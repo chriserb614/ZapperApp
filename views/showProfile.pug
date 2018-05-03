@@ -1,0 +1,195 @@
+doctype html
+html
+    head
+        
+        link(rel='stylesheet', href='/stylesheets/reset.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
+        link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.0.10/css/all.css', integrity='sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg', crossorigin='anonymous')
+        
+        title= title 
+    body
+
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+            .container
+                a.navbar-brand(href='#') Navbar
+                button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+                    span.navbar-toggler-icon
+                if !currentUser
+                else
+                    form.form-inline.ml-4(method='GET', action='/users/feed')
+                        .input-group
+                            input.form-control(type='text', placeholder='Search for a user', name='search', aria-label='Search')
+                            .input-group-append
+                                button.btn.btn-primary(type='submit', value='search') 
+                                    i.fas.fa-search
+                #navbarNav.collapse.navbar-collapse
+                    ul.navbar-nav.ml-auto
+                        if !currentUser
+                            li.nav-item
+                                a.nav-link(href='/') Home 
+                            li.nav-item
+                                a.nav-link(href='/register') Sign Up
+                            li.nav-item
+                                a.nav-link(href='/login') Log in
+                            li.nav-item
+                                a.nav-link(href='/help') Help
+                        else
+                            li.nav-item
+                                a.nav-link(href='/users/feed') Home
+                            li.nav-item
+                                a.nav-link(href='/users/' + currentUser._id + '/work/new', data-toggle="tooltip" data-placement="bottom" title="Submit a new work")
+                                    i.fas.fa-upload
+                            if currentUser.friendRequests.length < 1
+                                li.nav-item.dropdown
+                                    a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false', data-placement='bottom', title='Tooltip on bottom')
+                                        i.fas.fa-bell
+                                    .dropdown-menu(aria-labelledby='navbarDropdown')
+                                        a.dropdown-item(href='#') No new friend requests
+                            else
+                                li.nav-item.dropdown
+                                    a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false', data-placement='bottom', title='Tooltip on bottom')
+                                        i.fas.fa-bell
+                                        span.badge.badge-danger #{currentUser.friendRequests.length}
+                                    .dropdown-menu(aria-labelledby='navbarDropdown')
+                                        each friendRequest in currentUser.friendRequests
+                                            a.dropdown-item.list-group-item.list-group-item-action(href='#')
+                                                .d-flex.w-100.justify-content-between
+                                                    p
+                                                        strong
+                                                            a(href='/users/' + friendRequest.sendingFriendId)
+                                                                = friendRequest.sendingFriendName
+                                                        span.ml-2 wants to be your friend
+                                                    .btn-group
+                                                        button.btn.btn-success.btn-sm#acceptFriendBTN(type='submit', title = `${user.id}`)
+                                                            i.fas.fa-check-circle
+                                                        button.btn.btn-danger.btn-sm 
+                                                            i.fas.fa-minus-circle
+                            li.nav-item.active
+                                a.nav-link(href='/users/' + currentUser._id) #{currentUser.username}
+                            li.nav-item
+                                a.nav-link(href='/logout') Logout
+                            li.nav-item
+                                a.nav-link(href='/help') Help
+
+        .jumbotron.jumbotron-fluid(style='margin-bottom: 0px')
+            .container
+                .row
+                    .col-sm-4
+                        .card
+                            .card-body 
+                                //- img.img-thumbnail(src=`${user.profilePic}`)
+                    .col-sm-5
+                        h1.display-4 #{user.username}
+                        p.card-text 
+                            i.fas.fa-star.mr-2
+                            span#numofReviews Critiques
+                            i.fas.fa-book.mr-2.ml-2
+                            span#numofWorks #{user.works.length} works submitted
+                        p.card-text Joined: #{moment(user.createdDate).format('MMMM Do YYYY')}
+                        p.card-text Last active: #{moment(user.lastLogin).fromNow()}
+                    .col-sm-3.text-right
+                        if currentUser && user._id.equals(currentUser._id)
+                            a.btn.btn-primary.btn-block.mt-2(href='/users/' + user._id + '/edit') Edit profile
+                        else 
+                            button.btn.btn-primary.btn-block#addFriendBTN(title = `${user.id}`) Add friend
+                            
+        .container.pb-4
+            .row.mt-2
+                .col-sm-8
+                    .card
+                        .card-header
+                             h6.card-title #{user.username}'s bio:
+                        .card-body #{user.bio}
+                    .card.mt-3
+                        .card-header
+                            .row
+                                .col-sm-12
+                                    h6.card-title #{user.username}'s submissions:
+                            .row
+                                .col-sm-3
+                                    p.card-text
+                                        small Avg rating: 
+                                        span#avgRating
+                                .col-sm-3
+                                    p.card-text 
+                                        small Total ratings received:
+                                        span#totalRatings
+                                .col-sm-3
+                                    p.card-text 
+                                        small Total critiques received:
+                                        span#totalReviews
+                                .col-sm-3
+                                    p.card-text 
+                                        span#totalWorks
+                                        small Total works submitted: #{user.works.length}
+                        .card-body 
+                            ul.list-group
+                                each work in works
+                                    a.list-group-item.list-group-item-action.flex-column.align-items-start(href='/work/' + work._id)
+                                        .d-flex.justify-content-between
+                                            .col-sm-6
+                                                h5.card-title.mb-1
+                                                    = work.title
+                                                h6.card-subtitle.text-muted Genre: 
+                                                    = work.genre
+                                                small Type of work: 
+                                                    = work.workType
+                                            .col-sm-2
+                                                p.mb-1 rating
+                                                p.mb-1 # critiques
+                                                small.mb-1
+                                                    =  work.length
+                                                    |  words
+                                            .col-sm-2
+                                                if currentUser && user._id.equals(currentUser._id)
+                                                    .btn-group
+                                                        button.btn.btn-info
+                                                            i.fas.fa-pencil-alt
+                                                        button.btn.btn-danger 
+                                                            i.fas.fa-trash-alt
+
+                    .card.mt-3
+                        .card-header
+                            h6.card-title #{user.username}'s critiques:
+                        .card-body PRINT LIST OF REVIEWS/CRITIQUES
+                .col-sm-4
+                    .card
+                        .card-header
+                            h6.card-title #{user.username}'s ratings distribution:
+                        .card-body GRAPH OF RATINGS DIST.
+                    .card.mt-2
+                        .card-header
+                            h6.card-title About #{user.username}
+                        .card-body
+                            p.card-text 
+                                strong Influences: 
+                                span.ml-2 #{user.influences}
+                            p.card-text 
+                                strong Favorite books: 
+                                span.ml-2 #{user.favBooks}
+                            p.card-text 
+                                strong When I'm not writing I'm...
+                                span.ml-2 #{user.notWriting}
+                            p.card-text
+                                strong My favorite hero/heroinne is...
+                                span.ml-2 #{user.favHero}
+                            p.card-text
+                                strong My favorite villain is...
+                                span.ml-2 #{user.favVillain}
+                    .card.mt-2
+                        .card-header
+                            h6.card-title #{user.username}'s friends (#{user.friends.length})
+                        .card-body
+                            ul.list-group
+
+
+        
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ', crossorigin='anonymous')
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
+        script(src='/javascripts/friendRequest.js', type='text/javascript')
+        script.
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })

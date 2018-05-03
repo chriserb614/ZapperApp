@@ -1,0 +1,102 @@
+doctype html
+html
+    head
+        
+        link(rel='stylesheet', href='/stylesheets/reset.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
+        link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.0.10/css/all.css', integrity='sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg', crossorigin='anonymous')
+        
+        title= title 
+    body
+
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+            .container
+                a.navbar-brand(href='#') Navbar
+                button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+                    span.navbar-toggler-icon
+                if !currentUser
+                else
+                    form.form-inline.ml-4(method='GET', action='/users/feed')
+                        .input-group
+                            input.form-control(type='text', placeholder='Search for a user', name='search', aria-label='Search')
+                            .input-group-append
+                                button.btn.btn-primary(type='submit', value='search') 
+                                    i.fas.fa-search
+                #navbarNav.collapse.navbar-collapse
+                    ul.navbar-nav.ml-auto
+                        if !currentUser
+                            li.nav-item
+                                a.nav-link(href='/') Home 
+                            li.nav-item
+                                a.nav-link(href='/register') Sign Up
+                            li.nav-item
+                                a.nav-link(href='/login') Log in
+                            li.nav-item
+                                a.nav-link(href='/help') Help
+                        else
+                            li.nav-item.active
+                                a.nav-link(href='/users/feed') Home
+                            li.nav-item
+                                 a.nav-link(href='/users/' + currentUser._id + '/work/new') Submit your work
+                            li.nav-item
+                                a.nav-link(href='/users/' + currentUser._id) #{currentUser.username}
+                            li.nav-item
+                                a.nav-link(href='/logout') Logout
+                            li.nav-item
+                                a.nav-link(href='/help') Help
+
+        .container.pb-4
+            .card.mt-2
+                .card-header
+                    h5.card-title Let's round out #{user.username}'s profile
+                .card-body
+                    form(action='/users/' + user._id + '?_method=PUT', method='POST', enctype='multipart/form-data')
+                        .form-row
+                            .form-group 
+                                label(for="profilePic") Add or change your profile picture
+                                input.form-control-file#profilePic(type="file", name='profilePic')
+                                small (Maximum size: 5MB)
+                        .form-row.mt-2
+                            .col-sm-6
+                                label(for="firstname") First name
+                                input.form-control#firstname(type="text", name='firstname', value=`${user.firstname}`)
+                            .col-sm-6
+                                label(for="lastname") Last name
+                                input.form-control#lastname(type="text", name='lastname', value=`${user.lastname}`)
+                        .form-row.mt-2
+                            .col-sm-6
+                                label(for="country") Country/Region
+                                select.form-control#country
+                                    option United States
+                            .col-sm-6
+                                label(for="zip") Zip Code
+                                input.form-control(type='text', name='zip', placeholder='Zip', value=`${user.zip}`)
+                        .form-row.mt-2
+                            .col-sm-12
+                                label(for="bio") Bio/Summary
+                                textarea.form-control#bio(name="bio", cols="30", rows="10", placeholder="Tell us about you...") #{user.bio}
+                        .form-row.mt-2
+                            label(for="influences") Who are your influences?
+                                small.ml-2 (comma separated values only)
+                            input.form-control#influences(type='text', name='influences', placeholder='i.e. JK Rowling, Charles Dickens, Sylvia Plath, Stephen King', value=`${user.influences}`)
+                        .form-row.mt-2
+                            label(for="favBooks") What are your favorite books?
+                                small.ml-2 (comma separated values only)
+                            input.form-control#favBooks(type='text', name='favBooks', placeholder='i.e. Ulysses, War and Peace, Emma, The Great Gatsby', value=`${user.favBooks}`)
+                        .form-row.mt-2
+                            label(for="notWriting") When I'm not writing, I'm...
+                                small.ml-2 (comma separated values only)
+                            input.form-control#notWriting(type='text', name='notWriting', placeholder='i.e. reading, eating, sleeping', value=`${user.notWriting}`)
+                        .form-row.mt-2
+                            label(for="favHero") My favorite hero/heroines are...
+                                small.ml-2 (comma separated values only)
+                            input.form-control#favHero(type='text', name='favHero', placeholder='i.e. Harry Potter, robinson Crusoe, Sherlock Holmes, Guinevere', value=`${user.favHero}`)
+                        .form-row.mt-2
+                            label(for="favVillain") My favorite villains are...
+                                small.ml-2 (comma separated values only)
+                            input.form-control#favVillain(type='text', name='favVillain', placeholder='i.e. Professor Moriarty, Sauron, Dracula, The White Witch', value=`${user.favVillain}`)
+                        .form-row.mt-2
+                            .btn-group.ml-auto
+                                a.btn.btn-danger.mr-2.text-white(href='/users/' + user._id) Discard changes
+                                button.btn.btn-primary(type='submit') Save profile changes

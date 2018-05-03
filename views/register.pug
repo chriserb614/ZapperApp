@@ -1,0 +1,32 @@
+extends layout
+
+block content
+
+    .jumbotron.jumbotron-fluid
+        .container
+            .row
+                .col-sm-8
+                    h2 Get your manuscript reviewed and critiqued by the best
+                    p.lead Nobody can help you grow your craft like other writers!
+                .col-sm-4
+                    .card
+                        .card-header
+                            h5.card-title New here? Create a free account.
+                        .card-body
+                            form(action='/register', method='POST')
+                                .form-row
+                                    input.form-control(type='text', name='firstname', placeholder='First name')
+                                .form-row.mt-2
+                                    input.form-control(type='text', name='lastname', placeholder='Last name')
+                                .form-row.mt-2
+                                    input.form-control(type='text', name='username', placeholder='Username')
+                                .form-row.mt-2
+                                    input.form-control(type='email', name='email', placeholder='Email address') 
+                                .form-row.mt-2
+                                    input.form-control(type='password', name='password', placeholder='Create password')
+                                .form-row.mt-2
+                                    button.btn.btn-danger.btn-block(type='submit') Sign up
+                        .card-footer.text-center Already have an account?
+                            a(href='/login')  Log in
+                            p.card-text Back to the
+                                a(href='/')  home page

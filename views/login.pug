@@ -1,0 +1,25 @@
+extends layout
+
+block content
+
+    .jumbotron.jumbotron-fluid
+        .container
+            .row
+                .col-sm-4
+                .col-sm-4
+                    .card
+                        .card-header
+                            h5.card-title Log in
+                        .card-body
+                            form(action='/login', method='POST')
+                                .form-row.mt-2
+                                    input.form-control(type='text', name='username', placeholder='Username')
+                                .form-row.mt-2
+                                    input.form-control(type='password', name='password', placeholder='Password')
+                                .form-row.mt-2
+                                    button.btn.btn-danger.btn-block(type='submit') Log in
+                        .card-footer.text-center Don't have an account?
+                            a(href='/register')  Sign up
+                            p.card-text Back to the
+                                a(href='/')  home page
+                .col-sm-4

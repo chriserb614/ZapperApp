@@ -1,0 +1,27 @@
+{
+  "name": "zapper",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "express-session": "*",
+    "http-errors": "~1.6.2",
+    "method-override": "^2.3.10",
+    "moment": "^2.22.1",
+    "mongodb": "*",
+    "mongoose": "*",
+    "morgan": "~1.9.0",
+    "multer": "*",
+    "npm": "^6.0.0",
+    "passport": "*",
+    "passport-local": "*",
+    "passport-local-mongoose": "*",
+    "pug": "*"
+  }
+}

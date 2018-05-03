@@ -1,0 +1,108 @@
+doctype html
+html
+    head
+        
+        link(rel='stylesheet', href='/stylesheets/reset.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
+        link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.0.10/css/all.css', integrity='sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg', crossorigin='anonymous')
+        
+        title= title 
+    body
+
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+            .container
+                a.navbar-brand(href='#') Navbar
+                button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+                    span.navbar-toggler-icon
+                if !currentUser
+                else
+                    form.form-inline.ml-4(method='GET', action='/users/feed')
+                        .input-group
+                            input.form-control(type='text', placeholder='Search for a user', name='search', aria-label='Search')
+                            .input-group-append
+                                button.btn.btn-primary(type='submit', value='search') 
+                                    i.fas.fa-search
+                #navbarNav.collapse.navbar-collapse
+                    ul.navbar-nav.ml-auto
+                        if !currentUser
+                            li.nav-item
+                                a.nav-link(href='/') Home 
+                            li.nav-item
+                                a.nav-link(href='/register') Sign Up
+                            li.nav-item
+                                a.nav-link(href='/login') Log in
+                            li.nav-item
+                                a.nav-link(href='/help') Help
+                        else
+                            li.nav-item.active
+                                a.nav-link(href='/users/feed') Home
+                            li.nav-item
+                                 a.nav-link(href='/users/' + currentUser._id + '/work/new') Submit your work
+                            li.nav-item
+                                a.nav-link(href='/users/' + currentUser._id) #{currentUser.username}
+                            li.nav-item
+                                a.nav-link(href='/logout') Logout
+                            li.nav-item
+                                a.nav-link(href='/help') Help
+        
+        .container.pb-4
+            .jumbotron.jumbotron-fluid
+                .container
+                    .row
+                        .col-sm-3 
+                            .card
+                                .card-body
+                                    p   Author Profile Pic
+                        .col-sm-5
+                            .card
+                                .card-header
+                                    h4.card-title #{work.title}
+                                .card-body
+                                    h6.card-subtitle.text-muted.mb-1 by: 
+                                        a(href='/users/' + work.author.id) #{work.author.username}
+                                    p.card-text.mb-1 Num of stars(avg rating)
+                                    p.card-text.mb-1 Num of critiques submitted
+                        .col-sm-4
+                            p.card-text.mb-1 
+                                strong Genre: 
+                                span #{work.genre}
+                            p.card-text.mb-1 
+                                strong Type: 
+                                span #{work.workType}
+                            p.card-text.mb-1 
+                                strong Word count (approx): 
+                                span #{work.length} 
+                            a.btn.btn-primary.btn-block.mt-2(href='/reviews/' + work._id) Submit a critique
+                            button.btn.btn-danger.btn-block 
+                                i.fas.fa-exclamation-triangle.mr-2
+                                | Report
+                            if currentUser && work.author.id.equals(currentUser._id)
+                                form(action="/work/" + work._id + '?_method=DELETE', method='POST')
+                                    .form-row.mt-2
+                                        button.btn.btn-danger.btn-block(type='submit')
+                                            i.fas.fa-trash-alt.mr-2
+                                            | Delete work
+            .card.mt-2
+                .card-body #{work.manuscriptText}
+            .card.mt-2
+                .card-body
+                    ul.list-group
+                        each critique in critiques
+                            li.list-group-item
+                                .row
+                                    .col-sm-6  
+                                        strong
+                                            = critique.username 
+                                        span  reviewed 
+                                        strong
+                                            = work.title
+                                    .col-sm-6
+                                        small.text-muted.ml-auto
+                                            = critique.date
+                                .row
+                                    .col-sm-12
+                                        p.card-text
+                                            = critique.critique
+
+            

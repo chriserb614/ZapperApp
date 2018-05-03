@@ -1,0 +1,83 @@
+doctype html
+html
+    head
+        
+        link(rel='stylesheet', href='/stylesheets/reset.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
+        link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.0.10/css/all.css', integrity='sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg', crossorigin='anonymous')
+        
+        title= title 
+    body
+
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+            .container
+                a.navbar-brand(href='#') Navbar
+                button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+                    span.navbar-toggler-icon
+                if !currentUser
+                else
+                    form.form-inline.ml-4(method='GET', action='/users/feed')
+                        .input-group
+                            input.form-control(type='text', placeholder='Search for a user', name='search', aria-label='Search')
+                            .input-group-append
+                                button.btn.btn-primary(type='submit', value='search') 
+                                    i.fas.fa-search
+                #navbarNav.collapse.navbar-collapse
+                    ul.navbar-nav.ml-auto
+                        if !currentUser
+                            li.nav-item
+                                a.nav-link(href='/') Home 
+                            li.nav-item
+                                a.nav-link(href='/register') Sign Up
+                            li.nav-item
+                                a.nav-link(href='/login') Log in
+                            li.nav-item
+                                a.nav-link(href='/help') Help
+                        else
+                            li.nav-item.active
+                                a.nav-link(href='/users/feed') Home
+                            li.nav-item
+                                 a.nav-link(href='/users/' + currentUser._id + '/work/new') Submit your work
+                            li.nav-item
+                                a.nav-link(href='/users/' + currentUser._id) #{currentUser.username}
+                            li.nav-item
+                                a.nav-link(href='/logout') Logout
+                            li.nav-item
+                                a.nav-link(href='/help') Help
+        
+        .container.mt-5
+            .row
+                .col-sm-6
+                .col-sm-3
+                .col-sm-3.text-center
+                    a.btn.btn-info.btn-block.text-white Critique rules
+                    small (in case you forgot)
+            .card.mt-5
+                .card-header
+                    h4.card-title#workId(title = `${work.id}`) Write a critique of 
+                        a(href="/work/" + work.id) #{work.title}
+                    h6.card-subtitle.text-muted by: 
+                        a(href="/users/" + work.author.id) #{work.author.username} 
+                    .error
+                .card-body
+                    form(action="/reviews/" + work.id, method='POST')
+                        .form-row#starRating
+                            .col-sm-4
+                                i.far.fa-star.fa-2x#1Star(name='oneStar', value='1', title='I hate it', style='color: #e5c100')
+                                i.far.fa-star.fa-2x#2Star(name='twoStar', value='2', title="I didn't like it", style='color: #e5c100')
+                                i.far.fa-star.fa-2x#3Star(name='threeStar', value='3', title="It's okay", style='color: #e5c100')
+                                i.far.fa-star.fa-2x#4Star(name='fourStar', value='4', title='It was good', style='color: #e5c100')
+                                i.far.fa-star.fa-2x#5Star(name='fiveStar', value='5', title='I loved it', style='color: #e5c100')
+                            .col-sm-4.justify-content-start
+                                p.lead
+                                    strong#starTitle
+                            .col-sm-4
+                        .form-row.mt-2.pt-4
+                            textarea.form-control#critique(name="critique", cols="30", rows="10", placeholder='Tell the author what you liked the most and least about their work. Remember the rules of etiquette and that this submission is a work in-progress and not a final, published work.')
+                        .form-row.mt-2
+                            button.btn.btn-danger.ml-auto#rate(type='submit') Submit critique
+    
+        
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+        script(src='/javascripts/rating.js', type='text/javascript')
