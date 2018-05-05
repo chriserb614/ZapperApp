@@ -47,11 +47,13 @@ html
                                 a.nav-link(href='/help') Help
 
         .container.mt-5
-            form(action = '/users/' + currentUser._id + '/work', method='POST')
+            form.submissionForm(action = '/users/' + currentUser._id + '/work', method='POST')
                 .form-row
                     .form-group.col-md-6
                         label(for='title') Submission Title
-                        input.form-control#title(type='text', name='title', placeholder='i.e. Return of the King')
+                        input.form-control#title(type='text', name='title', placeholder='i.e. Return of the King', required='')
+                        .invalid-feedback
+                            | Please Enter A Title For Your Work
                     .form-group.col-md-4
                         label(for='genre') Choose a genre:
                         select#genre.form-control(name = 'genre')
@@ -72,7 +74,9 @@ html
                                     = workType
                     .form-group.col-md-4
                         label(for='length') Length (approx word count)
-                        input.form-control#length(type='text', name='length', placeholder='i.e. 5000')
+                        input.form-control#length(type='number', name='length', placeholder='i.e. 5000', required='')
+                        .invalid-feedback
+                            | Please Enter A Word Count For Your Work
                     .form-group.col-md-4
                         label(for='ageRange') Target audience age range?
                         select#ageRange.form-control(name = 'ageRange')
@@ -82,7 +86,7 @@ html
                 .form-row.mt-4
                     .form-group.col-md-12
                         label(for="manuscriptText") Text:
-                        textarea.form-control#manuscriptText(name="manuscriptText", cols="30", rows="10")
+                        textarea#manuscriptText.form-control(name='manuscriptText')
                 .form-row.mt-2
                     .form-group.col-md-12
                         button.btn.btn-secondary.mr-3 Save draft
@@ -93,3 +97,7 @@ html
         script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
         script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ', crossorigin='anonymous')
         script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
+        script(src='https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js')
+        script.
+            CKEDITOR.replace( 'manuscriptText');
+        script(src='/javascripts/newWork.js')
