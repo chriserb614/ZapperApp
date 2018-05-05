@@ -47,7 +47,7 @@ html
                                 a.nav-link(href='/help') Help
 
         .container.mt-5
-            form.submissionForm(action = '/users/' + currentUser._id + '/work', method='POST', onsubmit="return checkInfo()")
+            form.submissionForm(action = '/users/' + currentUser._id + '/work', method='POST')
                 .form-row
                     .form-group.col-md-6
                         label(for='title') Submission Title
@@ -74,7 +74,7 @@ html
                                     = workType
                     .form-group.col-md-4
                         label(for='length') Length (approx word count)
-                        input.form-control#length(type='text', name='length', placeholder='i.e. 5000', required='')
+                        input.form-control#length(type='number', name='length', placeholder='i.e. 5000', required='')
                         .invalid-feedback
                             | Please Enter A Word Count For Your Work
                     .form-group.col-md-4
