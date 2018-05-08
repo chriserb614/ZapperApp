@@ -60,7 +60,8 @@ html
                                 each work in works
                                     a.list-group-item.list-group-item-action.flex-column.align-items-start(href='/work/' + work._id)
                                         .d-flex.justify-content-between
-                                            .col-sm-3 User profile image here
+                                            .col-sm-3 
+                                                img.img-thumbnail(src='/uploads/' + `${work.author.username}` +'.png')
                                                 h6.card-subtitle.text-muted 
                                                     = work.author.username
                                             .col-sm-5

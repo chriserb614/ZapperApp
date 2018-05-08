@@ -60,6 +60,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/work', workRouter);
 app.use('/reviews', reviewRouter);
+app.use('/uploads', express.static('uploads'));
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
