@@ -9,9 +9,9 @@ router.get('/', function(req, res) {
     res.send("reviews page");
 });
 
-// show review page for a particulary work
+// show review page for a particular work
 router.get('/:id', isLoggedIn, function(req, res) {
-    
+
     Work.findById(req.params.id, function(err, foundWork) {
         if(err) {
             console.log(err);

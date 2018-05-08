@@ -95,7 +95,10 @@ router.get('/feed', isLoggedIn, function(req, res) {
               res.send("There are no matching users.")
           } else {
               console.log(foundUser);
-              res.render('searchResults', {currentUser: req.user, users: foundUser});
+              res.render('searchResults', {
+                currentUser: req.user, 
+                users: foundUser
+              });
           }
         }
       });
@@ -107,7 +110,13 @@ router.get('/feed', isLoggedIn, function(req, res) {
       if (err) {
         console.log(err)
       } else {
-        res.render('feed', {currentUser: req.user, works: works});
+        res.render('feed', {
+          currentUser: req.user, 
+          works: works,
+          workTypes: workTypes,
+          ageRanges: ageRanges,
+          genres: genres
+        });
       }
     })
   }

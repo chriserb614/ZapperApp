@@ -1,0 +1,109 @@
+doctype html
+html
+    head
+        
+        link(rel='stylesheet', href='/stylesheets/reset.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
+        link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.0.10/css/all.css', integrity='sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg', crossorigin='anonymous')
+        
+        title= title 
+    body
+
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+            .container
+                a.navbar-brand(href='#') Navbar
+                button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+                    span.navbar-toggler-icon
+                if !currentUser
+                else
+                    form.form-inline.ml-4(method='GET', action='/users/feed')
+                        .input-group
+                            input.form-control(type='text', placeholder='Search for a user', name='search', aria-label='Search')
+                            .input-group-append
+                                button.btn.btn-primary(type='submit', value='search') 
+                                    i.fas.fa-search
+                #navbarNav.collapse.navbar-collapse
+                    ul.navbar-nav.ml-auto
+                        if !currentUser
+                            li.nav-item
+                                a.nav-link(href='/') Home 
+                            li.nav-item
+                                a.nav-link(href='/register') Sign Up
+                            li.nav-item
+                                a.nav-link(href='/login') Log in
+                            li.nav-item.dropdown
+                                a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Help
+                                .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+                                    a.dropdown-item(href='/FAQ') FAQ
+                                    a.dropdown-item(href='/critiquerules') Critique Rules
+                                    a.dropdown-item(href='/termsofuse') Terms of Use
+
+                        else
+                            li.nav-item.active
+                                a.nav-link(href='/users/feed') Home
+                            li.nav-item
+                                    a.nav-link(href='/users/' + currentUser._id + '/work/new') Submit your work
+                            li.nav-item
+                                a.nav-link(href='/users/' + currentUser._id) #{currentUser.username}
+                            li.nav-item
+                                a.nav-link(href='/logout') Logout
+                            #navbarNavDropdown.collapse.navbar-collapse
+                                li.nav-item.dropdown
+                                    a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Help
+                                    .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+                                        a.dropdown-item(href='/FAQ') FAQ
+                                        a.dropdown-item(href='/critiquerules') Critique Rules
+                                        a.dropdown-item(href='/termsofuse') Terms of Use
+        .jumbotron.jumbotron-fluid(style='margin-bottom: 0px')
+            .container-fluid
+                .row
+                    .col-sm-4
+                    .col-sm-4.text-center
+                        h1.display-4 Critique Ettiquete
+                    .col-sm-4
+            .container
+                .row
+                    h3.text-center 1. Be Honest 
+                    .row
+                    h6.text-muted You can’t be useful to fellow writers unless you’re willing to be honest with them: about the good and the bad of their stories. No, you don’t want to hurt any feelings, but just assume that any writer who asks your opinion will be big enough to handle even a negative response.
+                .row
+                    h3.text-center 2. Be Specific
+                    .row
+                    h6.text-muted Generalities like, “I loved it!” or “Your plot was boring!” aren’t going to be much help. Even if you start out with only a gut feeling about the story, do your best to figure out why you liked or disliked something. Give your writer friend something concrete on which to build his revisions.
+                .row
+                    h3.text-center 3. Couch Criticism in Praise
+                    .row
+                    h6.text-muted The whole point of a critique is the criticism. But be a sport and don’t be too rough on a writer’s delicate ego. Say what you gotta say about the book’s faults, but couch your criticism in praise. Whenever you can, be lavish in your comments on a bo0k’s good points. Open your critique by telling the writer what you liked best, and sum up with either a generally positive opinion or a belief that the author will be able to refine his rough draft into something good.
+                .row
+                    h3.text-center 4. Avoid Negative Absolutes
+                    .row
+                    h6.text-muted Insofar as honesty allows, try to avoid negative absolutes: “This book is awful.” “I hated this character.” “Your theme is nonexistent.” Focus on the fix, rather than the problem: “I recommend using a more cheerful tone.” “What if you let this character pet a dog?” “Have you considered a theme for this story?” Even writers who want to hear all your criticism will grow resistant to accepting it if you put them on the defensive.
+                .row
+                    h3.text-center 5. Observe Deadlines
+                    .row
+                    h6.text-muted Aside from the fact that most writers will be chewing their fingernails with anticipation from the moment they send you their precious manuscript, they’ve also probably got some serious deadlines to meet. So once you agree to a timeline, try your darndest to meet it. Yes, you’re doing the writer a favor, but he’s also depending on you. If you’re going to be unable to meet the deadline, always take a moment to let the writer know about the delay.
+                .row
+                    h3.text-center 6. Observe Standard Editing Protocol
+                    .row
+                    h6.text-muted Make things easier for both yourself and the writer by observing standard editing protocol. Either use Word’s Track Changes to mark your comments and corrections right into the manuscript, or use standard editing symbols for marking up a hardcopy. No need to waste either the writer’s time or you own with comments he won’t be able to access or decipher.
+                .row
+                    h3.text-center 7. Respect the Author’s Guidelines
+                    .row
+                    h6.text-muted If the author says she’s only looking for a general overview of the story–not a line edit–then respect that. She knows what stage her story is in and what kind of opinion will be most helpful. An unasked for line edit at too early a stage may not only end up wasting your time, but also killing the writer’s confidence in her story.
+                .row
+                    h3.text-center 8. Check Your Personal Agenda at the Door
+                    .row
+                    h6.text-muted Remember: as a beta reader, you’re there to serve the writer, not the other way around. If you have a personal dislike for characters with red hair, the word “stupendous,” or rainy scenes, keep it to yourself. There’s a difference between pet peeves based on technical mistakes and pet peeves that are specific only to us and our personalities.
+                .row
+                    h3.text-center 9. Identify the Author’s Vision
+                    .row
+                    h6.text-muted In the same vein as #8, your job is to help the author realize her vision for the story. It’s definitely not your job to try to impose your vision (or worldview) onto the writer’s story. If she wrote an adventure story, but you wanted a romance, don’t take it upon yourself to rewrite the genre. Do your best to figure out what type and tone of story the author is going for, and shape your comments to help her figure out where she’s falling short of her vision.
+                .row
+                    h3.text-center 10. Respect the Author’s Autonomy
+                    .row
+                    h6.text-muted No matter how much effort and time you spend critiquing this story, there is no guarantee the author will make the changes you’re suggesting. Once you’ve turned over your critique, let the story go. You’ve had your say; you’ve fulfilled your duty. It’s not your responsibility to talk the writer into using all your suggestions. When the book comes out and the main character still has red hair, resist the urge to throw up your hands in frustration or write the author a scolding email.
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
