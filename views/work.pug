@@ -63,7 +63,7 @@ html
                         .col-sm-3 
                             .card
                                 .card-body
-                                    p   Author Profile Pic
+                                    img.img-thumbnail(src='/uploads/' +`${work.author.username}`+'.png' onerror="changeImage()")
                         .col-sm-5
                             .card
                                 .card-header

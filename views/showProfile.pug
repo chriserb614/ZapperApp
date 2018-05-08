@@ -6,7 +6,10 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
         link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.0.10/css/all.css', integrity='sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg', crossorigin='anonymous')
-        
+        script.
+            function changeImage(){
+                    document.getElementsByClassName('img-thumbnail')[0].src ='/uploads/noimage.png'   
+            }  
         title= title 
     body
 
@@ -87,8 +90,8 @@ html
                 .row
                     .col-sm-4
                         .card
-                            .card-body 
-                                //- img.img-thumbnail(src=`${user.profilePic}`)
+                            .card-body        
+                                img.img-thumbnail(src='/uploads/' +`${user.username}`+'.png' onerror="changeImage()")
                     .col-sm-5
                         h1.display-4 #{user.username}
                         p.card-text 
@@ -164,11 +167,7 @@ html
                             h6.card-title #{user.username}'s critiques:
                         .card-body PRINT LIST OF REVIEWS/CRITIQUES
                 .col-sm-4
-                    .card
-                        .card-header
-                            h6.card-title #{user.username}'s ratings distribution:
-                        .card-body GRAPH OF RATINGS DIST.
-                    .card.mt-2
+                    .card.mt
                         .card-header
                             h6.card-title About #{user.username}
                         .card-body
