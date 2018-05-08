@@ -81,8 +81,6 @@ router.get('/feed', isLoggedIn, function(req, res) {
     }
   });
 
-  // User.findByIdAndUpdate(req.user._id, {$set: {'lastLogin': Date.now()}});
-
   if (req.query.search) {
       console.log(req.query)
       const regex = new RegExp(escapeRegex(req.query.search), 'gi');
@@ -182,7 +180,7 @@ router.post('/:id/work', isLoggedIn, function(req, res) {
                   if (err) {
                     console.log(err);
                   }  else {
-                    res.render('showProfile', 
+                    res.redirect('/users/:id', 
                       {
                         user: foundUser, 
                         title: foundUser.username, 
@@ -192,14 +190,6 @@ router.post('/:id/work', isLoggedIn, function(req, res) {
                     );
                   }
                 });
-                // res.render('showProfile', 
-                //   {
-                //     user: foundUser, 
-                //     title: foundUser.username, 
-                //     works: foundUser.works,
-                //     currentUser: req.user
-                //   }
-                // );
               }
             });
         }
@@ -278,14 +268,6 @@ router.put('/:id', isLoggedIn, checkProfileOwnership, upload.single('profilePic'
     var notWriting = req.body.notWriting;
     var favHero = req.body.favHero;
     var favVillain = req.body.favVillain;
-
-    // // check image upload
-    // if(req.file) {
-    //   var profilePic = req.file.filename;
-    // } else {
-    //   console.log("no")
-    //   var profilePic = 'noimage.jpg'
-    // }
 
     // find and update the correct user
     User.findByIdAndUpdate(req.params.id, 
