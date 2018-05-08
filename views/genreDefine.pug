@@ -1,0 +1,420 @@
+doctype html
+html
+    head
+        link(rel='stylesheet', href='/stylesheets/reset.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
+        link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.0.10/css/all.css', integrity='sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg', crossorigin='anonymous')
+        title
+    body
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+            .container
+                a.navbar-brand(href='#') Navbar
+                button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+                    span.navbar-toggler-icon
+                #navbarNav.collapse.navbar-collapse
+                    ul.navbar-nav.ml-auto
+                        li.nav-item
+                            a.nav-link(href='/') Home 
+                        li.nav-item
+                            a.nav-link(href='/register') Sign Up
+                        li.nav-item
+                            a.nav-link(href='/login') Log in
+                        li.nav-item
+                            a.nav-link(href='/help') Help
+        .container
+            .row.mt-2
+                .col-sm-3(style='padding-right: 7px')
+                    .card
+                        .card-body Extra stuff
+                .col-sm-9(style='padding-left: 7px; padding-right: 7px')
+                    .card.mt-3
+                        .card-header
+                            h5.card-title Definitions of Genres
+                        #accordion
+                            .card
+                                #headingOne.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link(data-toggle='collapse', data-target='#collapseOne', aria-expanded='true', aria-controls='collapseOne')
+                                            | Biography
+                                #collapseOne.collapse.show(aria-labelledby='headingOne', data-parent='#accordion')
+                                    .card-body
+                                        p
+                                            | A biography, or simply bio, is a detailed description of a person's life. It involves
+                                            | more than just the basic facts like education, work, relationships, and death; it
+                                            | portrays a person's experience of these life events. Unlike a profile or curriculum
+                                            | vitae (résumé), a biography presents a subject's life story, highlighting various
+                                            | aspects of his or her life, including intimate details of experience, and may include
+                                            | an analysis of the subject's personality.
+                                        p
+                                            | Biographical works are usually non-fiction, but fiction can also be used to portray a
+                                            | person's life. One in-depth form of biographical coverage is called legacy writing.
+                                            | Works in diverse media, from literature to film, form the genre known as biography.
+                            .card
+                                #headingTwo.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwo', aria-expanded='false', aria-controls='collapseTwo')
+                                            | Business
+                                #collapseTwo.collapse(aria-labelledby='headingTwo', data-parent='#accordion')
+                                    .card-body
+                                        | While some scholars debate its origins and its boundaries, business literature is the body of major articles and books that
+                                        | have had formative influence on modern business theory and practice. As such, depending
+                                        | on whom one asks, it may or may not include popular business titles on the current best-seller
+                                        | lists. Moreover, for many, business literature includes not only those works dealing
+                                        | ostensibly with business subject matter, but also classical writings that continue to
+                                        | illuminate contemporary business issues.
+                            .card
+                                #headingThree.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseThree', aria-expanded='false', aria-controls='collapseThree')
+                                            | Children's Literature
+                                #collapseThree.collapse(aria-labelledby='headingThree', data-parent='#accordion')
+                                    .card-body
+                                        p
+                                            | This includes works intended for an audience usually between the ages of two and sixteen.
+                                            | Writing for children is a specialized art that’s harder than it looks. The language
+                                            | must be appropriate for the age of the reader, the subject matter must be of interest
+                                            | to the target age group, the opening of the work must be vivid enough to capture
+                                            | the reader’s attention and the writing throughout must be action-oriented enough
+                                            | to keep it. Story ideas begin with a strong character and meaningful, directed action.
+                                            | The use of suspense and the interplay of human relationships are two features of
+                                            | effective juvenile fiction. Books and stories are told almost exclusively from a
+                                            | single viewpoint (in first or third person), as this technique helps to establish
+                                            | and sustain a sense of reader identity.
+                                        p Categories of children’s books are usually divided in this way: 
+                                        ol
+                                            li Picture and storybooks (ages two to nine)
+                                            li Easy-to-read books (ages seven to nine)
+                                            li “Middle-Age” [also called “Middle Grade”] children’s books (ages eight to twelve
+                                            li Young adult books (ages twelve to sixteen)
+                            .card
+                                #headingFour.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseFour', aria-expanded='false', aria-controls='collapseFour')
+                                            | Christian
+                                #collapseFour.collapse(aria-labelledby='headingFour', data-parent='#accordion')
+                                    .card-body
+                                        | Christian devotional literature (also called devotionals or Christian living literature) is religious writing that is neither
+                                        | doctrinal nor theological, but designed for individuals to read for their personal edification
+                                        | and spiritual formation. Theologian Karl Holl has suggested that devotional literature
+                                        | came into full development at the time of Pietism during the second half of the 17th
+                                        | century.
+                            .card
+                                #headingFive.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseFive', aria-expanded='false', aria-controls='collapseFive')
+                                            | Classical
+                                #collapseFive.collapse(aria-labelledby='headingFive', data-parent='#accordion')
+                                    .card-body
+                                        | Classical literature, the literature of ancient Greece and Rome (see Greek literature; Latin literature). The term, usually
+                                        | spelled “classical,” is also used for the literature of any language in a period notable
+                                        | for the excellence and enduring quality of its writers' works.
+                            .card
+                                #headingSix.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseSix', aria-expanded='false', aria-controls='collapseSix')
+                                            | Comedy/Humor
+                                #collapseSix.collapse(aria-labelledby='headingSix', data-parent='#accordion')
+                                    .card-body
+                                        | Comedy is a literary genre and a type of dramatic work that is amusing and satirical in its tone, mostly having a cheerful
+                                        | ending. The motif of this dramatic work is triumph over unpleasant circumstance by creating
+                                        | comic effects, resulting in a happy or successful conclusion.
+                            .card
+                                #headingSeven.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseSeven', aria-expanded='false', aria-controls='collapseSeven')
+                                            | Contemporary
+                                #collapseSeven.collapse(aria-labelledby='headingSeven', data-parent='#accordion')
+                                    .card-body
+                                        | Generally speaking, contemporary literature is anything ‘of this moment’ - but in terms of literary study is often refers
+                                        | to anything after WW2. It follows ‘Modern’ literature which follows the post WW1 timeline
+                                        | (and coincides with Modernism).
+                            .card
+                                #headingEight.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseEight', aria-expanded='false', aria-controls='collapseEight')
+                                            | Cookbook
+                                #collapseEight.collapse(aria-labelledby='headingEight', data-parent='#accordion')
+                                    .card-body
+                                        p A cookbook or cookery book is a kitchen reference containing recipes.
+                                        p
+                                            | Cookbooks may be general, or may specialize in a particular cuisine or category of food.
+                                        p
+                                            | Recipes in cookbooks are organized in various ways: by course (appetizer, first course,
+                                            | main course, dessert), by main ingredient, by cooking technique, alphabetically,
+                                            | by region or country, and so on. They may include illustrations of finished dishes
+                                            | and preparation steps; discussions of cooking techniques, advice on kitchen equipment,
+                                            | ingredients, and substitutions; historical and cultural notes; and so on.
+                            .card
+                                #headingNine.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseNine', aria-expanded='false', aria-controls='collapseNine')
+                                            | Crime
+                                #collapseNine.collapse(aria-labelledby='headingNine', data-parent='#accordion')
+                                    .card-body
+                                        | Crime fiction is the literary genre that fictionalises crimes, their detection, criminals, and their motives. Suspense and
+                                        | mystery are key elements that are nearly ubiquitous to the genre.
+                            .card
+                                #headingTen.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTen', aria-expanded='false', aria-controls='collapseTen')
+                                            | Essay
+                                #collapseTen.collapse(aria-labelledby='headingTen', data-parent='#accordion')
+                                    .card-body
+                                        | Essay is derived from the French word essayer, which means “to attempt,” or “to try.” An essay is a short form of literary
+                                        | composition based on a single subject matter, and often gives the personal opinion of
+                                        | the author. In simple words, we can define it as a scholarly work in writing that provides
+                                        | the author’s personal argument.
+                            .card
+                                #headingEleven.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseEleven', aria-expanded='false', aria-controls='collapseEleven')
+                                            | Fantasy
+                                #collapseEleven.collapse(aria-labelledby='headingEleven', data-parent='#accordion')
+                                    .card-body
+                                        p
+                                            | Fantasy is a genre of fiction set in a fictional universe, often without any locations,
+                                            | events, or people referencing the real world. Its roots are in oral traditions, which
+                                            | then became literature and drama.
+                                        p
+                                            | Fantasy is a subgenre of speculative fiction and is distinguished from the genres of
+                                            | science fiction and horror by the absence of scientific or macabre themes respectively,
+                                            | though these genres overlap. In popular culture, the fantasy genre is predominantly
+                                            | of the medievalist form. In its broadest sense, however, fantasy consists of works
+                                            | by many writers, artists, filmmakers, and musicians from ancient myths and legends
+                                            | to many recent and popular works.
+                            .card
+                                #headingTwelve.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwelve', aria-expanded='false', aria-controls='collapseTwelve')
+                                            | Fiction
+                                #collapseTwelve.collapse(aria-labelledby='headingTwelve', data-parent='#accordion')
+                                    .card-body
+                                        p
+                                            | Etymologically, the word fiction has been derived from Latin word “fictus,” which means
+                                            | “to form.” However, in literature, Merriam Webster defines it as, “literature in
+                                            | the form of prose, especially novels, that describes imaginary events and people.”
+                                        p
+                                            | In fact, it is one of the two branches of literature, the other being non-fiction. This
+                                            | particular branch of literature consists of stories, novels, and dramas based on
+                                            | made-up and fabricated stories and characters. Fiction contains certain symbolic
+                                            | and thematic features known as “literary merits.” In other words, fiction narrates
+                                            | a story, which aims at something bigger than merely a story. In this attempt, it
+                                            | comments on something significant related to social, political, or human related
+                                            | issues.
+                                        p
+                                            | Fiction may be based on stories of actual historical events. Although fictitious characters
+                                            | are presented in a fictitious setting in stories and novels, they may have some resemblance
+                                            | to real life events and characters. Writers alter their characters very skillfully
+                                            | when they take them from actual life.
+                            .card
+                                #headingThirteen.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseThirteen', aria-expanded='false', aria-controls='collapseThirteen')
+                                            | LGBTQ
+                                #collapseThirteen.collapse(aria-labelledby='headingThirteen', data-parent='#accordion')
+                                    .card-body
+                                        | Gay literature is a collective term for literature produced by or for the LGBT community which involves characters, plot
+                                        | lines, and/or themes portraying male homosexual behavior. The term is now used most commonly
+                                        | to cover specifically gay male literature, with a separate genre of lesbian literature
+                                        | existing for women.
+                            .card
+                                #headingFourteen.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseFourteen', aria-expanded='false', aria-controls='collapseFourteen')
+                                            | Historical Fiction
+                                #collapseFourteen.collapse(aria-labelledby='headingFourteen', data-parent='#accordion')
+                                    .card-body
+                                        | Historical fiction is defined as movies and novels in which a story is made up but is set in the past and sometimes borrows
+                                        | true characteristics of the time period in which it is set. A novel that makes up a story
+                                        | about a Civil War battle that really happened is an example of historical fiction.
+                            .card
+                                #headingFifteen.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseFifteen', aria-expanded='false', aria-controls='collapseFifteen')
+                                            | Horror
+                                #collapseFifteen.collapse(aria-labelledby='headingFifteen', data-parent='#accordion')
+                                    .card-body
+                                        | Horror is a genre of fiction which is intended to, or has the capacity to frighten, scare, disgust, or startle its readers
+                                        | or viewers by inducing feelings of horror and terror. Often the central menace of a work
+                                        | of horror fiction can be interpreted as a metaphor for the larger fears of a society.
+                            .card
+                                #headingSixteen.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseSixteen', aria-expanded='false', aria-controls='collapseSixteen')
+                                            | Memoir
+                                #collapseSixteen.collapse(aria-labelledby='headingSixteen', data-parent='#accordion')
+                                    .card-body
+                                        | Memoirs are factual stories about someone's life. 'Memoir' is from the French word mémoire, which means 'reminiscence' or
+                                        | 'memory.' They are a part of the nonfiction literary genre and are usually told in the
+                                        | first person.
+                            .card
+                                #headingSeventeen.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseSeventeen', aria-expanded='false', aria-controls='collapseSeventeen')
+                                            | Mystery
+                                #collapseSeventeen.collapse(aria-labelledby='headingSeventeen', data-parent='#accordion')
+                                    .card-body
+                                        | The mystery genre is a type of fiction in which a detective, or other professional, solves a crime or series of crimes. It
+                                        | can take the form of a novel or short story. This genre may also be called detective
+                                        | or crime novels.
+                            .card
+                                #headingEighteen.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseEighteen', aria-expanded='false', aria-controls='collapseEighteen')
+                                            | Non-Fiction
+                                #collapseEighteen.collapse(aria-labelledby='headingEighteen', data-parent='#accordion')
+                                    .card-body
+                                        | the branch of literature comprising works of narrative prose dealing with or offering opinions or conjectures upon facts
+                                        | and reality, including biography, history, and the essay (opposed to fiction and distinguished
+                                        | from poetry and drama ).
+                            .card
+                                #headingNineteen.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseNineteen', aria-expanded='false', aria-controls='collapseNineteen')
+                                            | Paranormal
+                                #collapseNineteen.collapse(aria-labelledby='headingNineteen', data-parent='#accordion')
+                                    .card-body
+                                        | Paranormal fiction is a genre of fiction whose storylines revolve around the paranormal(ex. ghosts, extraterrestrial life,
+                                        | unidentified flying objects, psychic abilities or extrasensory perception, and cryptids.).
+                            .card
+                                #headingTwenty.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwenty', aria-expanded='false', aria-controls='collapseTwenty')
+                                            | Philosophy
+                                #collapseTwenty.collapse(aria-labelledby='headingTwenty', data-parent='#accordion')
+                                    .card-body
+                                        | Strictly speaking, the philosophy of literature is a branch of aesthetics, the branch of philosophy that deals with the question,
+                                        | "what is art"? Since all literary works, almost by definition, contain notional content,
+                                        | aesthetic theories that rely on purely formal qualities tend to overlook literature.
+                            .card
+                                #headingTwentyOne.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwentyOne', aria-expanded='false', aria-controls='collapseTwentyOne')
+                                            | Poetry
+                                #collapseTwentyOne.collapse(aria-labelledby='headingTwentyOne', data-parent='#accordion')
+                                    .card-body
+                                        | Poetry (the term derives from a variant of the Greek term, poiesis, "making") is a form of literature that uses aesthetic
+                                        | and rhythmic qualities of language—such as phonaesthetics, sound symbolism, and metre—to
+                                        | evoke meanings in addition to, or in place of, the prosaic ostensible meaning.
+                            .card
+                                #headingTwentyTwo.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwentyTwo', aria-expanded='false', aria-controls='collapseTwentyTwo')
+                                            | Psychology
+                                #collapseTwentyTwo.collapse(aria-labelledby='headingTwentyTwo', data-parent='#accordion')
+                                    .card-body
+                                        | The articles in a psychology trade journal are usually evaluated by editorial staff, who may be experts in the field, but
+                                        | the articles are not peer-reviewed. Articles in academic psychology journals are often
+                                        | evaluated by peer reviewers or referees who are experts in the field.
+                            .card
+                                #headingTwentyThree.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwentyThree', aria-expanded='false', aria-controls='collapseTwentyThree')
+                                            | Religious
+                                #collapseTwentyThree.collapse(aria-labelledby='headingTwentyThree', data-parent='#accordion')
+                                    .card-body
+                                        | Works that reference ideas and figures of religious texts(E.g The Bible, Koran, Torah, etc.)
+                            .card
+                                #headingTwentyFour.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwentyFour', aria-expanded='false', aria-controls='collapseTwentyFour')
+                                            | Romance
+                                #collapseTwentyFour.collapse(aria-labelledby='headingTwentyFour', data-parent='#accordion')
+                                    .card-body
+                                        | In traditional literary terms, a narration of the extraordinary exploits of heroes, often in exotic or mysterious settings.
+                                        | Most of the stories of King Arthur and his knights are romances. The term romance has
+                                        | also been used for stories of mysterious adventures, not necessarily of heroes.
+                            .card
+                                #headingTwentyFive.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwentyFive', aria-expanded='false', aria-controls='collapseTwentyFive')
+                                            | Science(Educational)
+                                #collapseTwentyFive.collapse(aria-labelledby='headingTwentyFive', data-parent='#accordion')
+                                    .card-body
+                                        | An "original" research article is a detailed account of research activity written by the scientists who did the research--not
+                                        | by someone else who is reporting on the research; it is a primary resource. Some instructors
+                                        | may refer to these as "scientific research" articles or as "empirical" research.
+                            .card
+                                #headingTwentySix.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwentySix', aria-expanded='false', aria-controls='collapseTwentySix')
+                                            | Science-Fiction
+                                #collapseTwentySix.collapse(aria-labelledby='headingTwentySix', data-parent='#accordion')
+                                    .card-body
+                                        | Science fiction (often shortened to sci-fi or SF) is a genre of speculative fiction, typically dealing with imaginative concepts
+                                        | such as advanced science and technology, spaceflight, time travel, and extraterrestrial
+                                        | life.
+                            .card
+                                #headingTwentySeven.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwentySeven', aria-expanded='false', aria-controls='collapseTwentySeven')
+                                            | Self-Help
+                                #collapseTwentySeven.collapse(aria-labelledby='headingTwentySeven', data-parent='#accordion')
+                                    .card-body
+                                        | A self-help book is one that is written with the intention to instruct its readers on solving personal problems. The books
+                                        | take their name from Self-Help, an 1859 best-seller by Samuel Smiles, but are also known
+                                        | and classified under "self-improvement", a term that is a modernized version of self-help.
+                            .card
+                                #headingTwentyEight.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwentyEight', aria-expanded='false', aria-controls='collapseTwentyEight')
+                                            | Suspense
+                                #collapseTwentyEight.collapse(aria-labelledby='headingTwentyEight', data-parent='#accordion')
+                                    .card-body
+                                        | Suspense is a feeling of fascination and excitement mixed with apprehension, tension, and anxiety developed from an unpredictable,
+                                        | mysterious, and rousing source of entertainment. The term most often refers to an audience's
+                                        | perceptions in a dramatic work. Suspense is not exclusive to fiction.
+                            .card
+                                #headingTwentyNine.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseTwentyNine', aria-expanded='false', aria-controls='collapseTwentyNine')
+                                            | Spirituality
+                                #collapseTwentyNine.collapse(aria-labelledby='headingTwentyNine', data-parent='#accordion')
+                                    .card-body
+                                        | The meaning of spirituality: a literature review. ... It is proposed that meeting the spiritual needs of patients is a fundamental
+                                        | part of providing holistic nursing care, but that the assessment and meeting of those
+                                        | needs is impeded by inadequate definitions and conceptual frameworks.
+                            .card
+                                #headingThirty.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseThirty', aria-expanded='false', aria-controls='collapseThirty')
+                                            | Sports
+                                #collapseThirty.collapse(aria-labelledby='headingThirty', data-parent='#accordion')
+                                    .card-body
+                                        | Organized by sport, the exhibition highlights some of the finest examples of literary writing about baseball, football, boxing,
+                                        | tennis, cricket, bullfighting, and other sports. Great literary works capture the broad
+                                        | appeal of sport and its ability to transform individuals and society.
+                            .card
+                                #headingThirtyOne.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseThirtyOne', aria-expanded='false', aria-controls='collapseThirtyOne')
+                                            | Thriller
+                                #collapseThirtyOne.collapse(aria-labelledby='headingThirtyOne', data-parent='#accordion')
+                                    .card-body
+                                        | Thriller is a broad genre of literature, film and television, having numerous, often overlapping subgenres. Thrillers are
+                                        | characterized and defined by the moods they elicit, giving viewers heightened feelings
+                                        | of suspense, excitement, surprise, anticipation and anxiety.
+                            .card
+                                #headingThirtyTwo.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseThirtyTwo', aria-expanded='false', aria-controls='collapseThirtyTwo')
+                                            | Textbook
+                                #collapseThirtyTwo.collapse(aria-labelledby='headingThirtyTwo', data-parent='#accordion')
+                                    .card-body
+                                        p A book used in the study of a subject. Such as:
+                                        ul  a : one containing a presentation of the principles of a subject
+                                        ul  b : a literary work relevant to the study of a subject
+                            .card
+                                #headingThirtyThree.card-header
+                                    h5.mb-0
+                                        button.btn.btn-link.collapsed(data-toggle='collapse', data-target='#collapseThirtyThree', aria-expanded='false', aria-controls='collapseThirtyThree')
+                                            | Travel
+                                #collapseThirtyThree.collapse(aria-labelledby='headingThirtyThree', data-parent='#accordion')
+                                    .card-body
+                                        | The genre of travel literature encompasses outdoor literature, guide books, nature writing, and travel memoirs. One early travel memoirist in Western literature was Pausanias, a Greek geographer of the 2nd century AD.
+        br
+        br
+        script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ', crossorigin='anonymous')
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
