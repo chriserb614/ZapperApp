@@ -81,8 +81,6 @@ router.get('/feed', isLoggedIn, function(req, res) {
     }
   });
 
-  // User.findByIdAndUpdate(req.user._id, {$set: {'lastLogin': Date.now()}});
-
   if (req.query.search) {
       console.log(req.query)
       const regex = new RegExp(escapeRegex(req.query.search), 'gi');
@@ -106,7 +104,7 @@ router.get('/feed', isLoggedIn, function(req, res) {
   } else {
    
     // find all the works
-    Work.find({}, function(err, works) {
+    Work.find({isPublic: 'public'}, function(err, works) {
       if (err) {
         console.log(err)
       } else {
@@ -152,6 +150,14 @@ router.post('/:id/work', isLoggedIn, function(req, res) {
         console.log(err)
         res.redirect('/:id');
       } else {
+
+          // check which the boolean is before passing it to the model
+          if (req.body.visibility === 'public') {
+            var isPublic = 'public';
+          } else if (req.body.visibility === 'private') {
+            var isPublic = 'private';
+          }
+
             // create new work
             var newWork = new Work(
                 {
@@ -164,7 +170,8 @@ router.post('/:id/work', isLoggedIn, function(req, res) {
                     author: {
                       id: foundUser._id,
                       username: foundUser.username
-                    }
+                    },
+                    isPublic: isPublic
                 }
             );
 
@@ -192,14 +199,6 @@ router.post('/:id/work', isLoggedIn, function(req, res) {
                     );
                   }
                 });
-                // res.render('showProfile', 
-                //   {
-                //     user: foundUser, 
-                //     title: foundUser.username, 
-                //     works: foundUser.works,
-                //     currentUser: req.user
-                //   }
-                // );
               }
             });
         }
@@ -278,14 +277,6 @@ router.put('/:id', isLoggedIn, checkProfileOwnership, upload.single('profilePic'
     var notWriting = req.body.notWriting;
     var favHero = req.body.favHero;
     var favVillain = req.body.favVillain;
-
-    // // check image upload
-    // if(req.file) {
-    //   var profilePic = req.file.filename;
-    // } else {
-    //   console.log("no")
-    //   var profilePic = 'noimage.jpg'
-    // }
 
     // find and update the correct user
     User.findByIdAndUpdate(req.params.id, 

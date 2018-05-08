@@ -83,16 +83,21 @@ html
                             p.card-text.mb-1 
                                 strong Word count (approx): 
                                 span #{work.length} 
-                            a.btn.btn-primary.btn-block.mt-2(href='/reviews/' + work._id) Submit a critique
-                            button.btn.btn-danger.btn-block 
-                                i.fas.fa-exclamation-triangle.mr-2
-                                | Report
+                                
                             if currentUser && work.author.id.equals(currentUser._id)
+                                form()
+                                    .form-row.mt-2
+                                        button.btn.btn-primary.btn-block(type='submit')
+                                            i.fas.fa-edit.mr-2
+                                            | Edit work
                                 form(action="/work/" + work._id + '?_method=DELETE', method='POST')
                                     .form-row.mt-2
                                         button.btn.btn-danger.btn-block(type='submit')
                                             i.fas.fa-trash-alt.mr-2
                                             | Delete work
+
+                            else 
+                                a.btn.btn-primary.btn-block.mt-2(href='/reviews/' + work._id) Submit a critique
             .card.mt-2
                 .card-body#manuscript !{work.manuscriptText}
             .card.mt-2
