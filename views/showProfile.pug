@@ -66,9 +66,9 @@ html
                                                                 a(href='/users/' + friendRequest.sendingFriendId)
                                                                     = friendRequest.sendingFriendName
                                                             span.ml-2 wants to be your friend
-                                                            button.ml-3.btn.btn-primary#acceptFriendBTN(type='submit', title = `${user.id}`)
+                                                            button.ml-3.btn.btn-primary.friendBTN#acceptFriendBTN(type='submit', title = `${user.id}`)
                                                                 i.fas.fa-check-circle
-                                                            button.btn.btn-secondary.ml-2
+                                                            button.btn.btn-secondary.ml-2.friendBTN#declineFriendBTN
                                                                 i.fas.fa-minus-circle
                             li.nav-item.active
                                 a.nav-link(href='/users/' + currentUser._id) #{currentUser.username}

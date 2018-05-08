@@ -19,22 +19,16 @@ $(document).ready(function() {
         });
     });
 
-    $('#acceptFriendBTN').on('click', function() {
-        var friendId = $(this).attr('title');
+    $('.friendBTN').on('click', function() {
+        switch (this.id) {
 
-        $.ajax({
-            method: 'POST',
-            url: '/users/' + friendId,
-            data: {
-                recevingId: friendId
-            },
-            success: function() {
-                $('#addFriendBTN').css('display', 'none');
-            },
-            error: function(err) {
-                console.log("err is " + err);
-            }
-        });
+            case "acceptFriendBTN" :
+                alert("you've accepted the friend")
+                break;
+            case "declineFriendBTN" :
+                alert('Friendship declined!')
+                break;
+        }
     });
 
 
