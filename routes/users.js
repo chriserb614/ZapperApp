@@ -122,7 +122,21 @@ router.get('/feed', isLoggedIn, function(req, res) {
   }
 });
 
+router.post('/searchFeed', isLoggedIn, function(req, res) {
+    console.log(req.body.selectGenre)
+    console.log(req.body.selectType);
 
+    
+    Work.find({genre: req.body.selectGenre,}, function(err, genreData){
+        if(err) {
+          console.log(err);
+        } else {
+          console.log(genreData)
+        }
+    })
+})
+
+//workType: req.body.selectType
 
 // WORK ROUTES
 // ===========================================================
