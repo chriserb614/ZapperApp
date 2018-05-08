@@ -57,19 +57,19 @@ html
                                         i.fas.fa-bell
                                         span.badge.badge-danger #{currentUser.friendRequests.length}
                                     .dropdown-menu(aria-labelledby='navbarDropdown')
-                                        each friendRequest in currentUser.friendRequests
-                                            a.dropdown-item.list-group-item.list-group-item-action(href='#')
-                                                .d-flex.w-100.justify-content-between
-                                                    p
-                                                        strong
-                                                            a(href='/users/' + friendRequest.sendingFriendId)
-                                                                = friendRequest.sendingFriendName
-                                                        span.ml-2 wants to be your friend
-                                                    .btn-group
-                                                        button.btn.btn-success.btn-sm#acceptFriendBTN(type='submit', title = `${user.id}`)
-                                                            i.fas.fa-check-circle
-                                                        button.btn.btn-danger.btn-sm 
-                                                            i.fas.fa-minus-circle
+                                        ul.list-group
+                                            each friendRequest in currentUser.friendRequests
+                                                li.dropdown-item.list-group-item.list-group-item-active
+                                                    .row
+                                                        p
+                                                            strong
+                                                                a(href='/users/' + friendRequest.sendingFriendId)
+                                                                    = friendRequest.sendingFriendName
+                                                            span.ml-2 wants to be your friend
+                                                            button.ml-3.btn.btn-primary#acceptFriendBTN(type='submit', title = `${user.id}`)
+                                                                i.fas.fa-check-circle
+                                                            button.btn.btn-secondary.ml-2
+                                                                i.fas.fa-minus-circle
                             li.nav-item.active
                                 a.nav-link(href='/users/' + currentUser._id) #{currentUser.username}
                             li.nav-item
