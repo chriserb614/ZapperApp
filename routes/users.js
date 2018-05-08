@@ -104,7 +104,7 @@ router.get('/feed', isLoggedIn, function(req, res) {
   } else {
    
     // find all the works
-    Work.find({}, function(err, works) {
+    Work.find({isPublic: 'public'}, function(err, works) {
       if (err) {
         console.log(err)
       } else {
@@ -150,6 +150,14 @@ router.post('/:id/work', isLoggedIn, function(req, res) {
         console.log(err)
         res.redirect('/:id');
       } else {
+
+          // check which the boolean is before passing it to the model
+          if (req.body.visibility === 'public') {
+            var isPublic = 'public';
+          } else if (req.body.visibility === 'private') {
+            var isPublic = 'private';
+          }
+
             // create new work
             var newWork = new Work(
                 {
@@ -162,7 +170,8 @@ router.post('/:id/work', isLoggedIn, function(req, res) {
                     author: {
                       id: foundUser._id,
                       username: foundUser.username
-                    }
+                    },
+                    isPublic: isPublic
                 }
             );
 
@@ -180,7 +189,7 @@ router.post('/:id/work', isLoggedIn, function(req, res) {
                   if (err) {
                     console.log(err);
                   }  else {
-                    res.redirect('/users/:id', 
+                    res.render('showProfile', 
                       {
                         user: foundUser, 
                         title: foundUser.username, 
