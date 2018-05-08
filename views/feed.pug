@@ -32,8 +32,13 @@ html
                                 a.nav-link(href='/register') Sign Up
                             li.nav-item
                                 a.nav-link(href='/login') Log in
-                            li.nav-item
-                                a.nav-link(href='/help') Help
+                            #navbarNavDropdown.collapse.navbar-collapse
+                                li.nav-item.dropdown
+                                    a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Help
+                                    .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+                                        a.dropdown-item(href='/FAQ') FAQ
+                                        a.dropdown-item(href='/critiquerules') Critique Rules
+                                        a.dropdown-item(href='/termsofuse') Terms of Use
                         else
                             li.nav-item.active
                                 a.nav-link(href='/users/feed') Home
@@ -43,8 +48,13 @@ html
                                 a.nav-link(href='/users/' + currentUser._id) #{currentUser.username}
                             li.nav-item
                                 a.nav-link(href='/logout') Logout
-                            li.nav-item
-                                a.nav-link(href='/help') Help
+                            #navbarNavDropdown.collapse.navbar-collapse
+                                li.nav-item.dropdown
+                                    a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Help
+                                    .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+                                        a.dropdown-item(href='/FAQ') FAQ
+                                        a.dropdown-item(href='/critiquerules') Critique Rules
+                                        a.dropdown-item(href='/termsofuse') Terms of Use
         .container
             .row.mt-2
                 .col-sm-3(style='padding-right: 7px')
@@ -55,6 +65,37 @@ html
                     .card.mt-3
                         .card-header
                             h5.card-title Submissions:
+                            form
+                                .form-row
+                                    .form-group.col-md-3
+                                        label(for='Type') Filter By Type:
+                                        select#type.form-control.form-control-sm
+                                            option
+                                            each workType in workTypes
+                                                option(value= workType)= workType
+                                    .form-group.col-md-3
+                                        label(for='Genre') Filter By Genre:
+                                        select#genre.form-control.form-control-sm
+                                            option
+                                            each genre in genres
+                                                option(value= genre)= genre
+                                    .form-group.col-md-3
+                                        label(for='Age Range') Filter By Age Range:
+                                        select#agerange.form-control.form-control-sm
+                                            option
+                                            each ageRange in ageRanges
+                                                option(value= ageRange)= ageRange
+                                    .form-group.col-md-3
+                                        label(for='Length') Filter By Length:
+                                        select#length.form-control.form-control-sm
+                                            option
+                                            option 250
+                                            option 500
+                                            option 1000
+                                            option 2500
+                                            option 5000
+                                            option 10000+
+                            button#button.btn.btn-outline-primary(type='button') Submit
                         .card-body
                             .list-group
                                 each work in works
@@ -82,4 +123,4 @@ html
         script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
         script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ', crossorigin='anonymous')
         script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
-        //- script(src='../public/javascripts/script', type='application/javascript', crossorigin='anonymous')
+        script(src='/javascripts/script.js', type='text/javascript', crossorigin='anonymous')
