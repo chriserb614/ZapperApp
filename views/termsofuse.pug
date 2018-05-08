@@ -1,0 +1,88 @@
+doctype html
+html
+    head
+        
+        link(rel='stylesheet', href='/stylesheets/reset.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
+        link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.0.10/css/all.css', integrity='sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg', crossorigin='anonymous')
+        
+        title= title 
+    body
+
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+            .container
+                a.navbar-brand(href='#') Navbar
+                button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+                    span.navbar-toggler-icon
+                if !currentUser
+                else
+                    form.form-inline.ml-4(method='GET', action='/users/feed')
+                        .input-group
+                            input.form-control(type='text', placeholder='Search for a user', name='search', aria-label='Search')
+                            .input-group-append
+                                button.btn.btn-primary(type='submit', value='search') 
+                                    i.fas.fa-search
+                #navbarNav.collapse.navbar-collapse
+                    ul.navbar-nav.ml-auto
+                        if !currentUser
+                            li.nav-item
+                                a.nav-link(href='/') Home 
+                            li.nav-item
+                                a.nav-link(href='/register') Sign Up
+                            li.nav-item
+                                a.nav-link(href='/login') Log in
+                            #navbarNavDropdown.collapse.navbar-collapse
+                                li.nav-item.dropdown
+                                    a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Help
+                                    .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+                                        a.dropdown-item(href='/FAQ') FAQ
+                                        a.dropdown-item(href='/critiquerules') Critique Rules
+                                        a.dropdown-item(href='/termsofuse') Terms of Use
+                        else
+                            li.nav-item.active
+                                a.nav-link(href='/users/feed') Home
+                            li.nav-item
+                                    a.nav-link(href='/users/' + currentUser._id + '/work/new') Submit your work
+                            li.nav-item
+                                a.nav-link(href='/users/' + currentUser._id) #{currentUser.username}
+                            li.nav-item
+                                a.nav-link(href='/logout') Logout
+                            #navbarNavDropdown.collapse.navbar-collapse
+                                li.nav-item.dropdown
+                                    a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Dropdown link
+                                    .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+                                        a.dropdown-item(href='#') FAQ
+                                        a.dropdown-item(href='#') Critique Rules
+                                        a.dropdown-item(href='#') Terms of Use
+        .jumbotron.jumbotron-fluid(style='margin-bottom: 0px')
+            .container-fluid
+                .row
+                    .col-sm-4
+                    .col-sm-4.text-center
+                        h1.display-4 Terms of Use
+                    .col-sm-4
+            .container
+                .row
+                    h3.text-center Privacy
+                    .row
+                    h6.text-muted Your privacy is very important to us. We designed our Data Policy to make important disclosures about how you can use Zapper to share with others and how we collect and can use your content and information. We encourage you to read the Data Policy, and to use it to help you make informed decisions. 
+                .row
+                    h3.text-center Sharing Your Content and Information
+                    .row
+                    h6.text-muted You own all of the content and information you post on Zapper, and you can control how it is shared through your privacy and application settings. In addition:For content that is covered by intellectual property rights, like photos and videos (IP content), you specifically give us the following permission, subject to your privacy and application settings: you grant us a non-exclusive, transferable, sub-licensable, royalty-free, worldwide license to use any IP content that you post on or in connection with Zapper (IP License). This IP License ends when you delete your IP content or your account unless your content has been shared with others, and they have not deleted it.When you delete IP content, it is deleted in a manner similar to emptying the recycle bin on a computer. However, you understand that removed content may persist in backup copies for a reasonable period of time (but will not be available to others).When you use an application, the application may ask for your permission to access your content and information as well as content and information that others have shared with you.  We require applications to respect your privacy, and your agreement with that application will control how the application can use, store, and transfer that content and information.  (To learn more about Platform, including how you can control what information other people may share with applications, read our Data Policy and Platform Page.)When you publish content or information using the Public setting, it means that you are allowing everyone, including people off of Zapper, to access and use that information, and to associate it with you (i.e., your name and profile picture).We always appreciate your feedback or other suggestions about Zapper, but you understand that we may use your feedback or suggestions without any obligation to compensate you for them (just as you have no obligation to offer them).
+                .row
+                    h3.text-center Safety
+                    .row
+                    h6.text-muted We do our best to keep Zapper safe, but we cannot guarantee it. We need your help to keep Zapper safe, which includes the following commitments by you <br> You will not post unauthorized commercial communications (such as spam) on Zapper.<br>You will not collect users' content or information, or otherwise access Zapper, using automated means (such as harvesting bots, robots, spiders, or scrapers) without our prior permission.<br>You will not engage in unlawful multi-level marketing, such as a pyramid scheme, on Facebook.<br>You will not upload viruses or other malicious code.<br>You will not solicit login information or access an account belonging to someone else.<br>You will not bully, intimidate, or harass any user.<br>You will not post content that: is hate speech, threatening, or pornographic; incites violence; or contains nudity or graphic or gratuitous violence.<br>You will not develop or operate a third-party application containing alcohol-related, dating or other mature content (including advertisements) without appropriate age-based restrictions.<br>You will not use Facebook to do anything unlawful, misleading, malicious, or discriminatory.<br>You will not do anything that could disable, overburden, or impair the proper working or appearance of Facebook, such as a denial of service attack or interference with page rendering or other Facebook functionality.<br>You will not facilitate or encourage any violations of this Statement or our policies.
+                .row
+                    h3.text-center 
+                    .row
+                    h6.text-muted 
+                .row
+                    h3.text-center 
+                    .row
+                    h6.text-muted 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>

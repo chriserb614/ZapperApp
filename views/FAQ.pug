@@ -37,13 +37,13 @@ html
                                     a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Help
                                     .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
                                         a.dropdown-item(href='/FAQ') FAQ
-                                        a.dropdown-item(href='critiquerules') Critique Rules
+                                        a.dropdown-item(href='/critiquerules') Critique Rules
                                         a.dropdown-item(href='/termsofuse') Terms of Use
                         else
                             li.nav-item.active
                                 a.nav-link(href='/users/feed') Home
                             li.nav-item
-                                 a.nav-link(href='/users/' + currentUser._id + '/work/new') Submit your work
+                                    a.nav-link(href='/users/' + currentUser._id + '/work/new') Submit your work
                             li.nav-item
                                 a.nav-link(href='/users/' + currentUser._id) #{currentUser.username}
                             li.nav-item
@@ -55,69 +55,35 @@ html
                                         a.dropdown-item(href='/FAQ') FAQ
                                         a.dropdown-item(href='/critiquerules') Critique Rules
                                         a.dropdown-item(href='/termsofuse') Terms of Use
-        
-        .container.pb-4
-            .jumbotron.jumbotron-fluid
-                .container
+        .jumbotron.jumbotron-fluid(style='margin-bottom: 0px')
+            .container-fluid
+                .row
+                    .col-sm-4
+                    .col-sm-4.text-center
+                        h1.display-4 FAQ
+                    .col-sm-4
+            .container
+                .row
+                    h3.text-center What is Zapper?
                     .row
-                        .col-sm-3 
-                            .card
-                                .card-body
-                                    p   Author Profile Pic
-                        .col-sm-5
-                            .card
-                                .card-header
-                                    h4.card-title #{work.title}
-                                .card-body
-                                    h6.card-subtitle.text-muted.mb-1 by: 
-                                        a(href='/users/' + work.author.id) #{work.author.username}
-                                    p.card-text.mb-1 Num of stars(avg rating)
-                                    p.card-text.mb-1 Num of critiques submitted
-                        .col-sm-4
-                            p.card-text.mb-1 
-                                strong Genre: 
-                                span #{work.genre}
-                            p.card-text.mb-1 
-                                strong Type: 
-                                span #{work.workType}
-                            p.card-text.mb-1 
-                                strong Word count (approx): 
-                                span #{work.length} 
-                            a.btn.btn-primary.btn-block.mt-2(href='/reviews/' + work._id) Submit a critique
-                            button.btn.btn-danger.btn-block 
-                                i.fas.fa-exclamation-triangle.mr-2
-                                | Report
-                            if currentUser && work.author.id.equals(currentUser._id)
-                                form(action="/work/" + work._id + '?_method=DELETE', method='POST')
-                                    .form-row.mt-2
-                                        button.btn.btn-danger.btn-block(type='submit')
-                                            i.fas.fa-trash-alt.mr-2
-                                            | Delete work
-            .card.mt-2
-                .card-body#manuscript !{work.manuscriptText}
-            .card.mt-2
-                .card-body
-                    ul.list-group
-                        each critique in critiques
-                            li.list-group-item
-                                .row
-                                    .col-sm-6  
-                                        strong
-                                            = critique.username 
-                                        span  reviewed 
-                                        strong
-                                            = work.title
-                                    .col-sm-6
-                                        small.text-muted.ml-auto
-                                            = critique.date
-                                .row
-                                    .col-sm-12
-                                        p.card-text
-                                            = critique.critique
+                    h6.text-muted Zapper is a free social publishing site that provides a place where writers and readers can connect from across the globe. Over the past ten years, tens of thousands of writers have posted hundreds of thousands of short stories, novel, poems, articles and more.
+                .row
+                    h3.text-center What are the site's content guidelines? What can I post?
+                    .row
+                    h6.text-muted Zapper is a site for all ages and as a result content should be suitable for anyone over 13 to read. A helpful way to think about it is that all content should fall within the G to R ratings guidelines. If you are over 18 and have adult content you would like to post, visit BooksieSilk, a publishing site for adults.
+                .row
+                    h3.text-center Can anyone join?
+                    .row
+                    h6.text-muted You must be 13 or older to post material to the site. As long as you are, anyone may submit material as long as it conforms to the site Content Posting Guidelines.
+                .row
+                    h3.text-center Can anyone start a writing group?
+                    .row
+                    h6.text-muted Yes, anyone can start a writing group on the site. Once you start a writing group, you can invite other people to join, assign other moderators, and have complete control over how the group runs and operates. This feature can be used by middle school, high school, and college classes, offline writing groups, and other assemblages of writers. It is free to create and join one writing group. Premium Members can create or join up to 10 writing groups.
+                .row
+                    h3.text-center Do I retain ownership of my work?
+                    .row
+                    h6.text-muted Yes, absolutely. You retain full rights to your work and may do with it as you please. Please see the Membership Agreement to view our rights policy.
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-
-
-            

@@ -20,6 +20,18 @@ router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Zapper Login' });
 });
 
+router.get('/critiquerules', function(req, res) {
+  res.render('critiquerules')
+})
+
+router.get('/FAQ', function(req, res) {
+  res.render('FAQ')
+})
+
+router.get('/termsofuse', function(req, res) {
+  res.render('termsofuse')
+})
+
 // ==============================
 // POST ROUTES
 
