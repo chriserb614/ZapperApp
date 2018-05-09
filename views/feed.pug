@@ -71,8 +71,15 @@ html
                                                 small Type of work: 
                                                     = work.workType
                                             .col-sm-4
-                                                p.mb-1 Number of Stars (avg rating)
-                                                p.mb-1 Num of critiques
+                                                p.mb-0(rate= work.ratingSum) 
+                                                    i.far.fas.fa-star.fa-1x#1Star(name='oneStar', value='1', title='I hate it', style='color: #e5c100')
+                                                    i.far.fa-star.fa-1x#2Star(name='twoStar', value='2', title='I did not like it', style='color: #e5c100')
+                                                    i.far.fa-star.fa-1x#3Star(name='threeStar', value='3', title='It is okay', style='color: #e5c100')
+                                                    i.far.fa-star.fa-1x#4Star(name='fourStar', value='4', title='It was good', style='color: #e5c100')
+                                                    i.far.fa-star.fa-1x#5Star(name='fiveStar', value='5', title='I loved it', style='color: #e5c100')
+                                                p.mb-1#aveRate number of critiques: 
+                                                    = work.ratingNum.length
+                                                
                                                 small
                                                     =  work.length
                                                     |  words
@@ -82,4 +89,4 @@ html
         script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
         script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js', integrity='sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ', crossorigin='anonymous')
         script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
-        //- script(src='../public/javascripts/script', type='application/javascript', crossorigin='anonymous')
+        script(src='/javascripts/aveRatingWork.js', type='application/javascript', crossorigin='anonymous')
