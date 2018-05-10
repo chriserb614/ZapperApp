@@ -8,15 +8,17 @@ var Critique = require('../models/critiqueModel');
 router.get('/', function(req, res) {
     res.send("reviews page");
 });
-
-// show review page for a particular work
+var aveRate
+var numOfRate
+    // show review page for a particulary work
 router.get('/:id', isLoggedIn, function(req, res) {
 
     Work.findById(req.params.id, function(err, foundWork) {
-        if(err) {
+        if (err) {
             console.log(err);
         } else {
-            res.render('critique', {currentUser: req.user, work: foundWork});
+            aveCal(foundWork.ratingNum)
+            res.render('critique', { currentUser: req.user, work: foundWork });
         }
     });
 });
@@ -24,98 +26,58 @@ router.get('/:id', isLoggedIn, function(req, res) {
 // post route for getting the review
 router.post('/:id', isLoggedIn, function(req, res) {
 
-    Work.findById(req.params.id, function(err, foundWork) {
+    //create a new critique
+    var critique = new Critique
+    critique.reviewer = req.user._id
+    critique.reviewerName = req.user.username
+    critique.critiqueText = req.body.critiqueText
+    critique.date = Date.now()
+    critique.rating = req.body.starRating
+    critique.save()
+    console.log("new critique is ")
+    console.log(critique)
+    Work.findByIdAndUpdate(req.params.id, {
+        $push: {
+            critiques: critique,
+            ratingNum: req.body.starRating
+        },
+        $set: {
+            ratingSum: Math.round(aveRate * numOfRate / (numOfRate + 1) + req.body.starRating / (numOfRate + 1))
+        }
+    }, { new: true }).populate('works').populate('critiques').exec(function(err, foundWork) {
         if (err) {
             console.log(err);
         } else {
-            // create a new critique
-            var newCritique = new Critique ({
-                reviewer: req.user._id,
-
-                // work: {
-                //     id: foundWork._id,
-                //     title: foundWork.title
-                // },
-                critique : req.body.critique,
-                date: Date.now(),
-                rating: 0
-            });
-            
-            console.log("new critique is ")
-            console.log(newCritique)
-
-            // save new critique to db
-            Critique.create(newCritique, function(err, createdCritique) {
-                if (err) {
-                    console.log(err)
-                } else {
-                    console.log("Created critique is ");
-                    console.log(createdCritique);
-                    
-                    // push the new critique into array of critiques of the work
-                    foundWork.critiques.push(createdCritique);
-                    // save to db
-                    foundWork.save();
-
-                    Work.findById(foundWork._id, function(err, foundWork) {
-                        if (err) {
-                            console.log(err)
-                        } else {
-                            console.log("Found work is ");
-                            console.log(foundWork)
-                        }
-                    });
-
-                    // Work.findById(foundWork.id).populate('critique').exec(function(err, foundWork) {
-                    //     if (err) {
-                    //         console.log(err);
-                    //     }  else {
-                    //         console.log("Found work critiques are ")
-                    //         console.log(foundWork.critiques)
-                    //         res.render('work', 
-                    //             {
-                    //                 work: foundWork, 
-                    //                 critiques: foundWork.critique,
-                    //                 currentUser: req.user
-                    //             }
-                    //         );
-                    //     }
-                    // });
-                }
+            res.render('work', {
+                user: foundWork,
+                title: foundWork.title,
+                currentUser: req.user,
+                work: foundWork,
+                critiques: foundWork.critiques
             });
         }
     });
 
-    // Work.findByIdAndUpdate(req.params.id, 
-    //     {
-    //         $push: 
-    //             {
-    //                 critiques: {
-    //                     reviewerName: req.user.username,
-    //                     critique: req.body.critique
-    //                 }
-    //             }
-    //     }, { new: true}).populate('works', 'critiques').exec(function(err, foundWork) {
-    //             if (err) {
-    //                 console.log(err);
-    //             }  else {
-    //                 res.render('work', 
-    //                     {
-    //                         user: foundWork, 
-    //                         title: foundWork.title, 
-    //                         critiques: foundWork.critiques,
-    //                         currentUser: req.user,
-    //                         work: foundWork
-    //                     }
-    //                 );
-    //         }
-    //     });
 });
 
 
+
+function aveCal(Arr) {
+    if (Arr.length > 0) {
+
+        var sum = 0
+        for (var i = 0; i < Arr.length; i++) {
+            sum += Arr[i]
+        }
+        return (aveRate = sum / Arr.length, numOfRate = Arr.length)
+    } else {
+        return aveRate = 0, numOfRate = 0
+    }
+}
+
 // log in function
 function isLoggedIn(req, res, next) {
-    if(req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
         return next();
     }
     res.redirect('/login');

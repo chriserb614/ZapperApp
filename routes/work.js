@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var Work = require('../models/workModel');
-
+var Critique = require('../models/critiqueModel');
 // handle base route 
 router.get('/', isLoggedIn, function(req, res, next) {
     res.send('Temporarily down');
@@ -12,11 +12,11 @@ router.get('/', isLoggedIn, function(req, res, next) {
 router.get('/:id', isLoggedIn, function(req, res, next) {
     // find work by id
     Work.findById(req.params.id, function(err, foundWork) {
-        if(err) {
+        if (err) {
             console.log(err);
         } else {
             // if no errors, render the correct page
-            res.render('work', {currentUser: req.user, work: foundWork, critiques: foundWork.critiques});
+            res.render('work', { currentUser: req.user, work: foundWork, critiques: foundWork.critiques });
         }
     });
 });
@@ -26,7 +26,7 @@ router.get('/:id', isLoggedIn, function(req, res, next) {
 router.delete('/:id', isLoggedIn, checkAuthorOwnership, function(req, res, next) {
     // find the correct work by id
     Work.findByIdAndRemove(req.params.id, function(err) {
-        if(err) {
+        if (err) {
             res.redirect('/users/feed');
         } else {
             res.redirect('/users/feed');
@@ -37,7 +37,7 @@ router.delete('/:id', isLoggedIn, checkAuthorOwnership, function(req, res, next)
 
 // log in function
 function isLoggedIn(req, res, next) {
-    if(req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
         return next();
     }
     res.redirect('/login');
@@ -45,24 +45,24 @@ function isLoggedIn(req, res, next) {
 
 // check user profile the author of the work to allow for edit, update, and deletion of works
 function checkAuthorOwnership(req, res, next) {
-    if(req.isAuthenticated()) {
-      Work.findById(req.params.id, function(err, foundWork) {
-        if (err) {
-            res.redirect('back');
-        } else {
+    if (req.isAuthenticated()) {
+        Work.findById(req.params.id, function(err, foundWork) {
+            if (err) {
+                res.redirect('back');
+            } else {
 
-          // is the current user the author of the work they're trying to access?
-          if(foundWork.author.id.equals(req.user._id)) {
-              next();
-          } else {
-              // if not, tell them
-              res.send("You do not have permission to do that");
-          }
-        }
-      });
-  } else {
-      res.redirect("back");
-  }
+                // is the current user the author of the work they're trying to access?
+                if (foundWork.author.id.equals(req.user._id)) {
+                    next();
+                } else {
+                    // if not, tell them
+                    res.send("You do not have permission to do that");
+                }
+            }
+        });
+    } else {
+        res.redirect("back");
+    }
 }
 
 module.exports = router;
