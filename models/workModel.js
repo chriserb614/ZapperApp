@@ -28,8 +28,8 @@ var WorkSchema = new mongoose.Schema({
         default: Date.now
     },
     isPublic: {
-        type: Boolean,
-        default: true
+        type: String,
+        default: 'public'
     }
 
 })
