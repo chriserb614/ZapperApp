@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    
     $('#button').click(function(){
         var selectAgeRange = $('#agerange').val()
         var selectType = $('#type').val()
@@ -16,7 +17,7 @@ $(document).ready(function() {
         
         $.ajax({
             method: 'POST',
-            url: 'users/searchFeed',
+            url: '/users/searchFeed',
             data: myObject,
             success: function() {
                console.log('posted to SearchFeed');

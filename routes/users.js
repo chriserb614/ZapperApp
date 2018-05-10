@@ -122,11 +122,11 @@ router.get('/feed', isLoggedIn, function(req, res) {
 
 router.post('/users/searchFeed', function(req, res) {
     
-    Work.find({genre: { $exists: true }}, function(err, genreData){
+    Work.find({workType: { $exists: true }}, function(err, workData){
         if(err) {
           console.log(err);
         } else {
-          console.log(genreData)
+          console.log(workData)
         }
     })
     Work.find({genre: { $exists: true }}, function(err, genreData){
@@ -136,20 +136,14 @@ router.post('/users/searchFeed', function(req, res) {
         console.log(genreData)
       }
     })
-    Work.find({genre: { $exists: true }}, function(err, genreData){
+    Work.find({ageRange: { $exists: true }}, function(err, ageData){
     if(err) {
       console.log(err);
     } else {
-      console.log(genreData)
+      console.log(ageData)
     }
     })
-    Work.find({genre: { $exists: true }}, function(err, genreData){
-    if(err) {
-    console.log(err);
-    } else {
-    console.log(genreData)
-    }
-    })
+
 
 })
 
