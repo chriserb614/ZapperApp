@@ -1,0 +1,15 @@
+.profilePic-lg {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 5px solid #00303F;
+
+}
+
+.card#profilePicCard {
+    background-color: transparent;
+    border: none;
+}
+#backgroundPic{
+    background-color:#dcae1d;
+}
