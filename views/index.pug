@@ -2,4 +2,35 @@ extends layout
 
 block content
 
- 
+    head
+        link(href='https://fonts.googleapis.com/css?family=Monoton', rel='stylesheet')
+        link(rel='stylesheet', href='/stylesheets/index.css')
+
+    .jumbotron.jumbotron.bg-cover
+        .overlay
+        .container
+            h1.display-3.mb-1 Zapper
+
+    section#services
+    .container
+        .row
+            .col-lg-3.col-md-6.text-center
+                .service-box.mt-5.mx-auto
+                    i.fa.fa-4x.fa-upload.text-primary.mb-3.sr-icons
+                    h3.mb-3 Upload
+                    p.text-muted.mb-0 Store your writings on our massive database
+            .col-lg-3.col-md-6.text-center
+                .service-box.mt-5.mx-auto
+                    i.fa.fa-4x.fa-search.text-primary.mb-3.sr-icons
+                    h3.mb-3 Search
+                    p.text-muted.mb-0 Find works by title, genre or username
+            .col-lg-3.col-md-6.text-center
+                .service-box.mt-5.mx-auto
+                    i.fa.fa-4x.fa-exchange-alt.text-primary.mb-3.sr-icons
+                    h3.mb-3 Feedback
+                    p.text-muted.mb-0 Receive notes and constructive feedback on your work
+            .col-lg-3.col-md-6.text-center
+                .service-box.mt-5.mx-auto
+                    i.fa.fa-4x.fa-star.text-primary.mb-3.sr-icons
+                    h3.mb-3 Rate
+                    p.text-muted.mb-0 Rate each other's writings and see if your's is trending
