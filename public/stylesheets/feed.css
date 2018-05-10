@@ -1,0 +1,11 @@
+#navBar{
+    background-color: #00303F;
+}
+.navbar-brand{
+    font-family: 'Pacifico', cursive;
+}
+#searchButton{
+    background-color: #DCAE1D;
+    border-color: #DCAE1D;
+}
+

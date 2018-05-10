@@ -1,0 +1,40 @@
+/* Background image */
+.jumbotron {
+    text-align: center;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    text-shadow: 2px 2px #000;
+    height: 500px;
+  }
+  
+  .bg-cover {
+    background-size: cover;
+    color: white;
+    background-position: center top 48%;
+    position: relative;
+    z-index: -2;
+    background-image: url('../images/writing_laptop.jpg');
+    height: 550px;
+  }
+  
+  .overlay {
+    background-color: #000;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+  }
+  h1{
+    font-family: 'Monoton', cursive;
+    color: #DCAE1D;
+  }
+
+  body{
+      background-color: #CAE4DB
+  }
+  .fa{
+    color: #7A9D96;
+  }
