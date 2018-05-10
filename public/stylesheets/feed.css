@@ -1,11 +1,8 @@
-#navBar{
-    background-color: #00303F;
-}
-.navbar-brand{
-    font-family: 'Pacifico', cursive;
-}
-#searchButton{
-    background-color: #DCAE1D;
-    border-color: #DCAE1D;
+.list-group-item {
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 1px solid #7a9d96;
+    margin-bottom: 0;
 }
 

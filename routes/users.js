@@ -120,7 +120,34 @@ router.get('/feed', isLoggedIn, function(req, res) {
   }
 });
 
+router.post('/users/searchFeed', function(req, res) {
+    
+    Work.find({workType: { $exists: true }}, function(err, workData){
+        if(err) {
+          console.log(err);
+        } else {
+          console.log(workData)
+        }
+    })
+    Work.find({genre: { $exists: true }}, function(err, genreData){
+      if(err) {
+        console.log(err);
+      } else {
+        console.log(genreData)
+      }
+    })
+    Work.find({ageRange: { $exists: true }}, function(err, ageData){
+    if(err) {
+      console.log(err);
+    } else {
+      console.log(ageData)
+    }
+    })
 
+
+})
+
+//workType: req.body.selectType
 
 // WORK ROUTES
 // ===========================================================

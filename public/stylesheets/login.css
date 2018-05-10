@@ -8,7 +8,13 @@ a{
     color: #CAE4DB;
 }
 #background{
-    background-image: url('../images/desk.jpg');
+    background-image: url('../images/books.jpeg');
     background-position: center center;
-    background-size: 85%;
+    background-size: 100%;
+    height: 570px;
+    opacity: 0.8;
+    margin-bottom: 0px;
+}
+body{
+    background-color: #CAE4DB;
 }

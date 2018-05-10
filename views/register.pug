@@ -2,12 +2,16 @@ extends layout
 
 block content
 
-    .jumbotron.jumbotron-fluid
+    head
+        link(href='https://fonts.googleapis.com/css?family=Playfair+Display', rel='stylesheet')
+        link(rel='stylesheet', href='/stylesheets/register.css')
+
+    .jumbotron.jumbotron-fluid#background
         .container
             .row
                 .col-sm-8
-                    h2 Get your manuscript reviewed and critiqued by the best
-                    p.lead Nobody can help you grow your craft like other writers!
+                    h2#heading Get your manuscript reviewed and critiqued by the best
+                    p.lead#p Nobody can help you grow your craft like other writers!
                 .col-sm-4
                     .card
                         .card-header
