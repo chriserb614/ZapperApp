@@ -15,6 +15,7 @@
 a{
     color: #CAE4DB;
 }
+
 body{
     background-color: #CAE4DB;
 }
@@ -23,7 +24,6 @@ body{
     font-weight: bolder;
     color: #00303F;
     text-align: center;
-    
 }
 #p{
     font-family: 'Playfair Display', serif;
@@ -31,3 +31,4 @@ body{
     font-weight: bold;
     font-size: 20px;
 }
+
