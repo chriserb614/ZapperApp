@@ -16,7 +16,12 @@ router.get('/:id', isLoggedIn, function(req, res, next) {
             console.log(err);
         } else {
             // if no errors, render the correct page
-            res.render('work', { currentUser: req.user, work: foundWork, critiques: foundWork.critiques });
+            console.log(foundWork.critiques)
+            res.render('work', { 
+                currentUser: req.user, 
+                work: foundWork, 
+                critiques: foundWork.critiques 
+            });
         }
     });
 });
