@@ -26,7 +26,7 @@ var Critique = require('./models/critiqueModel');
 var app = express();
 
 // connect to db
-mongoose.connect("mongodb://localhost/zapper");
+mongoose.connect("mongodb://localhost/zapper1");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
