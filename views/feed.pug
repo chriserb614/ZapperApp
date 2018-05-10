@@ -105,7 +105,7 @@ html
                                     a.list-group-item.list-group-item-action.flex-column.align-items-start(href='/work/' + work._id)
                                         .d-flex.justify-content-between
                                             .col-sm-3 
-                                                img.img-thumbnail(src='/uploads/' + `${work.author.username}` +'.png' )
+                                                img.img-thumbnail(src='/uploads/' + `${work.author.username}` +'.png' onerror="this.src='/uploads/noimage.png';")
                                                 h6.card-subtitle.text-muted 
                                                     = work.author.username
                                             .col-sm-5
