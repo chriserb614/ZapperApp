@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $('#button').click(function(){
         var selectAgeRange = $('#agerange').val()
         var selectType = $('#type').val()
@@ -17,7 +16,7 @@ $(document).ready(function() {
         
         $.ajax({
             method: 'POST',
-            url: '/users/searchFeed',
+            url: 'users/searchFeed',
             data: myObject,
             success: function() {
                console.log('posted to SearchFeed');
@@ -33,18 +32,6 @@ $(document).ready(function() {
             console.log(err);
             
         })
-
-        // $.ajax({
-        //     type: "POST",
-        //     url: '/searchFeed',
-        //     data: myObject
-        // }).then(function(data){
-        //     console.log(data);
-            
-        // })
-
-        // $.ajax('/specificfeed',myObject)
-
     })
     
     console.log("connected")
