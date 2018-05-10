@@ -301,6 +301,10 @@ router.put('/:id', isLoggedIn, checkProfileOwnership, upload.single('profilePic'
     });
 });
 
+router.post('/:id/addFriend', function(req, res) {
+    res.send("Hi there");
+});
+
 // log in function
 function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()) {

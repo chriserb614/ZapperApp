@@ -62,17 +62,20 @@ html
                                     .dropdown-menu(aria-labelledby='navbarDropdown')
                                         ul.list-group
                                             each friendRequest in currentUser.friendRequests
-                                                li.dropdown-item.list-group-item.list-group-item-active
+                                                li.dropdown-item.list-group-item.list-group-item-active#friendItem
                                                     .row
-                                                        p
+                                                        p#friendAlert
                                                             strong
                                                                 a(href='/users/' + friendRequest.sendingFriendId)
                                                                     = friendRequest.sendingFriendName
                                                             span.ml-2 wants to be your friend
                                                             button.ml-3.btn.btn-primary.friendBTN#acceptFriendBTN(type='submit', title = `${user.id}`)
                                                                 i.fas.fa-check-circle
-                                                            button.btn.btn-secondary.ml-2.friendBTN#declineFriendBTN
+                                                            button.btn.btn-secondary.ml-2.friendBTN#declineFriendBTN(type='submit', title = `${user.id}`)
                                                                 i.fas.fa-minus-circle
+                                                        .alert.alert-success#friendAdded.text-center(role='alert', style='display: none; margin-bottom: 0px; width:100%') #{friendRequest.sendingFriendName}'s friendship is accepted
+                                                        .alert.alert-danger#friendDeclined.text-center(role='alert', style='display: none; margin-bottom: 0px; width:100%') #{friendRequest.sendingFriendName}'s friendship declined
+                            
                             li.nav-item.active
                                 a.nav-link(href='/users/' + currentUser._id) #{currentUser.username}
                             li.nav-item
@@ -106,6 +109,7 @@ html
                             a.btn.btn-primary.btn-block.mt-2(href='/users/' + user._id + '/edit') Edit profile
                         else 
                             button.btn.btn-primary.btn-block#addFriendBTN(title = `${user.id}`) Add friend
+                            .alert.alert-success#friendSuccess.text-center(role='alert', style='visibility: hidden') Friend request sent!
                             
         .container.pb-4
             .row.mt-2
