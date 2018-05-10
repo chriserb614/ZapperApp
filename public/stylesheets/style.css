@@ -1,4 +1,38 @@
+body {
+    background-color: #cae4db;
+}
+
+.navbar {
+    background-color: #00303f;
+} 
+
+.card {
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
+}
+
+.card-header {
+    background-color: transparent;
+    border-bottom: none;
+}
+
 #starRating img {
     width: 50px;
     height: 50px;
+}
+
+.profilePic-sm {
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    border: 3px solid #00303f;
+}
+
+.btn-primary {
+    background-color: #00303f;
+    border-color: #00303f;
+}
+
+.btn-secondary {
+    background-color: #dcae1d;
+    border-color: #dcae1d;
 }

@@ -3,9 +3,11 @@ html
     head
         
         link(rel='stylesheet', href='/stylesheets/reset.css')
-        link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
         link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.0.10/css/all.css', integrity='sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg', crossorigin='anonymous')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel="stylesheet", href="/stylesheets/feed.css")
+
         script.
             function changeImage(){
                     document.getElementsByClassName('img-thumbnail')[0].src ='/uploads/noimage.png'   
@@ -13,9 +15,9 @@ html
         title= title
     body
 
-        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+        nav.navbar.navbar-expand-lg.navbar-dark
             .container
-                a.navbar-brand(href='#') Navbar
+                a.navbar-brand(href='#') Zapper
                 button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
                     span.navbar-toggler-icon
                 if !currentUser
@@ -24,7 +26,7 @@ html
                         .input-group
                             input.form-control(type='text', placeholder='Search for a user', name='search', aria-label='Search')
                             .input-group-append
-                                button.btn.btn-primary(type='submit', value='search') 
+                                button.btn.btn-secondary(type='submit', value='search') 
                                     i.fas.fa-search
                 #navbarNav.collapse.navbar-collapse
                     ul.navbar-nav.ml-auto
@@ -94,15 +96,15 @@ html
                                             option 2500
                                             option 5000
                                             option 10000+
-                            button#button.btn.btn-outline-primary(type='button') Submit
+                            button#button.btn.btn-primary(type='button') Submit
                         .card-body
                             .list-group
                                 each work in works
                                     a.list-group-item.list-group-item-action.flex-column.align-items-start(href='/work/' + work._id)
                                         .d-flex.justify-content-between
-                                            .col-sm-3 
-                                                img.img-thumbnail(src='/uploads/' + `${work.author.username}` +'.png' onerror="this.src='/uploads/noimage.png';")
-                                                h6.card-subtitle.text-muted 
+                                            .col-sm-3.text-center 
+                                                img.img-thumbnail.profilePic-sm(src='/uploads/' + `${work.author.username}` +'.png' onerror="this.src='/uploads/noimage.png';")
+                                                h6.card-subtitle.text-muted.mt-2 
                                                     = work.author.username
                                             .col-sm-5
                                                 h5.card-title.mb-1
