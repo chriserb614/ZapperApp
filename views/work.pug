@@ -62,8 +62,8 @@ html
                     .row
                         .col-sm-3 
                             .card
-                                .card-body
-                                    img.img-thumbnail(src='/uploads/' +`${work.author.username}`+'.png' onerror="changeImage()")
+                                .card-body  
+                                    img.img-thumbnail(src='/uploads/' +`${work.author.username}`+'.png' onerror="this.src='/uploads/noimage.png';")
                         .col-sm-5
                             .card
                                 .card-header
@@ -114,7 +114,7 @@ html
                                             = work.title
                                     .col-sm-6
                                         small.text-muted.ml-auto
-                                            = critique.date
+                                            =critique.date
                                 .row
                                     .col-sm-12
                                         p.card-text
