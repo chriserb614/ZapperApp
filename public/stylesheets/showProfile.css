@@ -6,10 +6,21 @@
 
 }
 
+.card {
+    box-shadow: 0px 0px 0px 0px;
+}
+
 .card#profilePicCard {
     background-color: transparent;
     border: none;
 }
+
 #backgroundPic{
-    background-color:#dcae1d;
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('../images/book.jpg') no-repeat;
+    background-size: cover;
+}
+
+#usersWorks a {
+    border-right: 0;
+    border-left: 0;
 }

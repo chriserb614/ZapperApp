@@ -11,7 +11,7 @@
 }
 
 body {
-    background-color: #cae4db;
+    background-color: #a1b6af;
 }
 
 .navbar {
@@ -27,6 +27,11 @@ body {
     border-bottom: none;
 }
 
+.card-footer {
+    background-color: transparent;
+    border-top: none;
+}
+
 #starRating img {
     width: 50px;
     height: 50px;
@@ -40,12 +45,43 @@ body {
     border: 3px solid #00303f;
 }
 
+.profilePic-lg {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 5px solid #00303F;
+
+}
+
+.img-thumbnail {
+    background-color: none !important;
+    padding: 0;
+}
+
+.profilePic-xs {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 3px solid #00303f;
+}
+
 .btn-primary {
     background-color: #00303f;
     border-color: #00303f;
+}
+
+.btn-primary:hover {
+    background-color: #002632;
+    border-color: #002632;
 }
 
 .btn-secondary {
     background-color: #dcae1d;
     border-color: #dcae1d;
 }
+
+.btn-secondary:hover {
+    background-color: #b08b17;
+    border-color: #b08b17;
+}
+

@@ -12,6 +12,8 @@ var createError = require('http-errors'),
     multer = require('multer'),
     upload = multer({dest: './uploads'}),
     methodOverride = require('method-override');
+    // connect = require('connect')
+    // SessionStore = require('session-mongoose')(express);
 
 // local requires
 var indexRouter = require('./routes/index');
@@ -26,7 +28,9 @@ var Critique = require('./models/critiqueModel');
 var app = express();
 
 // connect to db
-mongoose.connect("mongodb://localhost/zapper1");
+mongoose.connect("mongodb://JGSilverman:Varsity18!@ds119650.mlab.com:19650/zapperapp");
+// mongoose.connect("mongodb://localhost/zapper1");
+// mongodb://JGSilverman:Varsity18!@ds119650.mlab.com:19650/zapperapp
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,11 +45,23 @@ app.use(express.static('uploads'));
 app.use(methodOverride("_method"));
 
 // passport config
-app.use(require('express-session')({
+// var store = new SessionStore({
+//   interval: 120000, // expiration check worker run interval in millisec (default: 60000)
+//   connection: mongoose.connection // <== custom connection
+// });
+
+// passport config
+app.use(require("express-session")({
   secret: "Rusty is cute",
   resave: false,
   saveUninitialized: false
 }));
+
+// app.use(express.session({
+//   store: store,
+//   cookie: { maxAge: 1200000 },
+//   secret: 'my secret'
+// }));
 
 app.use(passport.initialize());
 app.use(passport.session());

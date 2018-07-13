@@ -240,7 +240,7 @@ router.get('/:id', isLoggedIn, function(req, res) {
   // get current user
   var currentUser = req.user;
   // get the correct user we're searching for
-  User.findById(req.params.id).populate('works').exec(function(err, foundUser) {
+  User.findById(req.params.id).populate('works').populate('critiques').exec(function(err, foundUser) {
     if (err) {
       console.log(err);
     }  else {
@@ -249,7 +249,8 @@ router.get('/:id', isLoggedIn, function(req, res) {
           user: foundUser, 
           title: foundUser.username, 
           works: foundUser.works,
-          currentUser: req.user
+          currentUser: req.user,
+          critiques: foundUser.critiques
         }
       );
     }
@@ -312,7 +313,6 @@ router.put('/:id', isLoggedIn, checkProfileOwnership, upload.single('profilePic'
         lastname: lastname, 
         bio: bio, 
         zip: zip,
-        profilePic: req.file.path,
         influences: influences,
         favBooks: favBooks,
         notWriting: notWriting,

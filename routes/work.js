@@ -11,7 +11,7 @@ router.get('/', isLoggedIn, function(req, res, next) {
 // show page for a specific work
 router.get('/:id', isLoggedIn, function(req, res, next) {
     // find work by id
-    Work.findById(req.params.id, function(err, foundWork) {
+    Work.findById(req.params.id).populate('critiques').exec(function(err, foundWork) {
         if (err) {
             console.log(err);
         } else {

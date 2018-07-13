@@ -47,19 +47,23 @@ html
                         else
                             li.nav-item.active
                                 a.nav-link(href='/users/feed') Home
-                            li.nav-item
-                                 a.nav-link(href='/users/' + currentUser._id + '/work/new') Submit your work
-                            li.nav-item
-                                a.nav-link(href='/users/' + currentUser._id) #{currentUser.username}
-                            li.nav-item
+                            li.nav-item.ml-2
+                                a.nav-link(href='/users/' + currentUser._id + '/work/new', data-toggle="tooltip" data-placement="bottom" title="Submit a new work")
+                                    i.fas.fa-upload
+                            li.nav-item.ml-2
+                                a.nav-link(href='/users/' + currentUser._id) 
+                                    img.img-thumbnail.profilePic-xs(src='/uploads/' + `${currentUser.username}` +'.png' onerror="this.src='/uploads/noimage.png';")
+                            li.nav-item.ml-2
                                 a.nav-link(href='/logout') Logout
-                            #navbarNavDropdown.collapse.navbar-collapse
-                                li.nav-item.dropdown
-                                    a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Help
-                                    .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdownMenuLink')
-                                        a.dropdown-item(href='/FAQ') FAQ
-                                        a.dropdown-item(href='/critiquerules') Critique Rules
-                                        a.dropdown-item(href='/termsofuse') Terms of Use
+                            li.nav-item.dropdown
+                                a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                                    | Help
+                                .dropdown-menu(aria-labelledby='navbarDropdown')
+                                    a.dropdown-item(href='/FAQ') FAQ
+                                    a.dropdown-item(href='/critiquerules') Critique Rules
+                                    .dropdown-divider
+                                    a.dropdown-item(href='/termsofuse') Terms of Use
+
         .container
             .row.mt-2
                 .col-sm-12(style='padding-left: 7px; padding-right: 7px')
@@ -74,7 +78,7 @@ html
                                             option
                                             each workType in workTypes
                                                 option(value= workType)= workType
-                                    .form-group.col-md-3
+                                    .form-group.col-md-2
                                         label(for='Genre') Filter By Genre:
                                         select#genre.form-control.form-control-sm
                                             option
@@ -86,7 +90,7 @@ html
                                             option
                                             each ageRange in ageRanges
                                                 option(value= ageRange)= ageRange
-                                    .form-group.col-md-3
+                                    .form-group.col-md-2
                                         label(for='Length') Filter By Length:
                                         select#length.form-control.form-control-sm
                                             option
@@ -96,7 +100,8 @@ html
                                             option 2500
                                             option 5000
                                             option 10000+
-                            button#button.btn.btn-primary(type='button') Submit
+                                    .form-group.col-md-2.mt-4
+                                        button#button.btn.btn-primary.btn-block(type='button') Submit
                         .card-body
                             .list-group
                                 each work in works
@@ -120,9 +125,9 @@ html
                                                     i.far.fa-star.fa-1x#3Star(name='threeStar', value='3', title='It is okay', style='color: #e5c100')
                                                     i.far.fa-star.fa-1x#4Star(name='fourStar', value='4', title='It was good', style='color: #e5c100')
                                                     i.far.fa-star.fa-1x#5Star(name='fiveStar', value='5', title='I loved it', style='color: #e5c100')
-                                                p.mb-1#aveRate number of critiques: 
+                                                p.mb-1#aveRate 
                                                     = work.ratingNum.length
-                                                
+                                                    |  critiques
                                                 small
                                                     =  work.length
                                                     |  words
@@ -134,4 +139,5 @@ html
         script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js', integrity='sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm', crossorigin='anonymous')
         script(src='/javascripts/script.js', type='text/javascript', crossorigin='anonymous')
         script(src='/javascripts/aveRatingWork.js', type='application/javascript', crossorigin='anonymous')
+        script(src='/javascripts/friendRequest.js', type='application/javascript', crossorigin='anonymous')
 

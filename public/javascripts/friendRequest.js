@@ -6,6 +6,7 @@ $(document).ready(function() {
 
     $('#addFriendBTN').on('click', function() {
         var friendId = $(this).attr('title');
+        console.log(friendId)
         $('#addFriendBTN').css('display', 'none');
         $('#friendSuccess').css('visibility', 'visible');
 

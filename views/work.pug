@@ -3,16 +3,16 @@ html
     head
         
         link(rel='stylesheet', href='/stylesheets/reset.css')
-        link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css', integrity='sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4', crossorigin='anonymous')
         link(rel='stylesheet', href='https://use.fontawesome.com/releases/v5.0.10/css/all.css', integrity='sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg', crossorigin='anonymous')
+        link(rel='stylesheet', href='/stylesheets/style.css')
         
         title= title 
     body
 
-        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+        nav.navbar.navbar-expand-lg.navbar-dark
             .container
-                a.navbar-brand(href='#') Navbar
+                a.navbar-brand(href='#') Zapper
                 button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
                     span.navbar-toggler-icon
                 if !currentUser
@@ -21,7 +21,7 @@ html
                         .input-group
                             input.form-control(type='text', placeholder='Search for a user', name='search', aria-label='Search')
                             .input-group-append
-                                button.btn.btn-primary(type='submit', value='search') 
+                                button.btn.btn-secondary(type='submit', value='search') 
                                     i.fas.fa-search
                 #navbarNav.collapse.navbar-collapse
                     ul.navbar-nav.ml-auto
@@ -37,24 +37,27 @@ html
                                     a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Help
                                     .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdownMenuLink')
                                         a.dropdown-item(href='/FAQ') FAQ
-                                        a.dropdown-item(href='critiquerules') Critique Rules
+                                        a.dropdown-item(href='/critiquerules') Critique Rules
                                         a.dropdown-item(href='/termsofuse') Terms of Use
                         else
                             li.nav-item.active
                                 a.nav-link(href='/users/feed') Home
-                            li.nav-item
-                                 a.nav-link(href='/users/' + currentUser._id + '/work/new') Submit your work
-                            li.nav-item
-                                a.nav-link(href='/users/' + currentUser._id) #{currentUser.username}
-                            li.nav-item
+                            li.nav-item.ml-2
+                                a.nav-link(href='/users/' + currentUser._id + '/work/new', data-toggle="tooltip" data-placement="bottom" title="Submit a new work")
+                                    i.fas.fa-upload
+                            li.nav-item.ml-2
+                                a.nav-link(href='/users/' + currentUser._id) 
+                                    img.img-thumbnail.profilePic-xs(src='/uploads/' + `${currentUser.username}` +'.png' onerror="this.src='/uploads/noimage.png';")
+                            li.nav-item.ml-2
                                 a.nav-link(href='/logout') Logout
-                            #navbarNavDropdown.collapse.navbar-collapse
-                                li.nav-item.dropdown
-                                    a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Help
-                                    .dropdown-menu.dropdown-menu-right(aria-labelledby='navbarDropdownMenuLink')
-                                        a.dropdown-item(href='/FAQ') FAQ
-                                        a.dropdown-item(href='/critiquerules') Critique Rules
-                                        a.dropdown-item(href='/termsofuse') Terms of Use
+                            li.nav-item.dropdown
+                                a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                                    | Help
+                                .dropdown-menu(aria-labelledby='navbarDropdown')
+                                    a.dropdown-item(href='/FAQ') FAQ
+                                    a.dropdown-item(href='/critiquerules') Critique Rules
+                                    .dropdown-divider
+                                    a.dropdown-item(href='/termsofuse') Terms of Use
         
         .container.pb-4
             .jumbotron.jumbotron-fluid
@@ -119,7 +122,7 @@ html
                                             = work.title
                                     .col-sm-6
                                         small.text-muted.ml-auto
-                                            =critique.date
+                                            = `${moment(critique.date).fromNow()}`
                                 .row
                                     .col-sm-12
                                         p.card-text
